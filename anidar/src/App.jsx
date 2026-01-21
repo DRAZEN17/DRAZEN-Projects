@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Search, User, X, Bookmark, ExternalLink, Play, Info, Loader2, Menu } from 'lucide-react';
 
-
 // --- Constants ---
 const API_BASE = "https://api.jikan.moe/v4";
 
