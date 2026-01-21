@@ -1,12 +1,7 @@
-/**
- * Zenith React Hub - Installation Guide:
- * 1. Create a React Vite project: npm create vite@latest
- * 2. Install dependencies: npm install lucide-react clsx tailwind-merge
- * 3. Ensure Tailwind CSS is configured in your project.
- */
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { Search, User, X, Bookmark, ExternalLink, Play, Info, Loader2, Menu } from 'lucide-react';
+
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 // --- Constants ---
 const API_BASE = "https://api.jikan.moe/v4";
