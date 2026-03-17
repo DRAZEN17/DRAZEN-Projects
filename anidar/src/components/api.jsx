@@ -1,7 +1,4 @@
 const API_BASE = "https://api.jikan.moe/v4";
-
-// Simple in-memory cache for detailed fetches (keyed by `${type}:${id}`).
-// Stores the in-flight Promise so concurrent requests share the same network call.
 const detailCache = new Map();
 
 async function fetchWithRetry(url, retries = 3, backoff = 1000) {
@@ -51,7 +48,6 @@ export async function fetchById(type = "anime", id) {
   if (!id) throw new Error("id required");
   const key = `${type}:${id}`;
 
-  // Return cached promise/result when available
   if (detailCache.has(key)) {
     return detailCache.get(key);
   }
@@ -62,10 +58,10 @@ export async function fetchById(type = "anime", id) {
     return res.data || null;
   })();
 
-  // Cache the in-flight promise so concurrent callers reuse it
+
   detailCache.set(key, p);
 
-  // If the promise rejects, remove from cache so caller can retry later
+
   p.catch(() => detailCache.delete(key));
 
   return p;

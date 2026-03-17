@@ -1,7 +1,7 @@
 import React from 'react'
 import HouseCard from './HouseCard'
 
-export default function Profile({ user, houses, deleteAsset }) {
+export default function Profile({ user, houses, deleteAsset}) {
   const myHouses = houses.filter(h => h.ownerId === user.id)
   return (
     <div className="pt-24 md:pt-32 pb-20 px-4 md:px-8 max-w-7xl mx-auto">
@@ -19,7 +19,7 @@ export default function Profile({ user, houses, deleteAsset }) {
       <h2 className="text-xl md:text-2xl font-black uppercase italic tracking-tighter mb-8 md:mb-12 border-b border-white/5 pb-4 md:pb-6">Your Secured Portfolio</h2>
       {myHouses.length === 0 ? (
         <div className="py-20 text-center bg-white/5 rounded-[2rem] md:rounded-[3rem] border border-dashed border-white/10">
-           <p className="text-zinc-600 font-black uppercase tracking-widest text-[8px] md:text-[10px]">No assets found in your portfolio.</p>
+          <p className="text-zinc-600 font-black uppercase tracking-widest text-[8px] md:text-[10px]">No assets found in your portfolio.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
