@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+
+html, body, #root { height: 100%; }
+html { scroll-behavior: smooth; }
+body {
+  @apply bg-bg text-ink font-body antialiased selection:bg-neon-cyan/30 selection:text-white;
+  background-image:
+    radial-gradient(1200px 600px at 80% -10%, rgba(124,58,237,0.18), transparent 60%),
+    radial-gradient(900px 500px at -10% 30%, rgba(34,211,238,0.12), transparent 60%);
+}
+
+/* Custom cursor */
+* { cursor: none; }
+input, textarea { cursor: text; }
+
+.glass {
+  @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
+}
+.glass-hover {
+  @apply transition-all duration-300 hover:border-neon-cyan/40 hover:shadow-glow;
+}
+
+.neon-text {
+  background: linear-gradient(90deg, #22d3ee, #ff2bd6, #7c3aed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-magnetic {
+  @apply relative inline-flex items-center justify-center px-6 py-3 rounded-full
+         bg-gradient-to-r from-neon-cyan/20 to-neon-magenta/20 border border-white/15
+         text-ink font-medium tracking-wide transition;
+}
+.btn-magnetic:hover { @apply border-neon-cyan/60 shadow-glow; }
+
+.section { @apply relative max-w-7xl mx-auto px-6 md:px-10 py-24 md:py-32; }
+.h1 { @apply font-display text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight; }
+.h2 { @apply font-display text-3xl md:text-5xl tracking-tight; }
+.eyebrow { @apply font-mono text-xs uppercase tracking-[0.25em] text-neon-cyan; }
+
+/* scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
+
+@media (max-width: 768px) {
+  * { cursor: auto; }
+}
