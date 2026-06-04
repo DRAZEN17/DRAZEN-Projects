@@ -1,3 +1,6 @@
+// ─────────────────────────────────────────────────────────────────────────────
+//  authStore.js  ·  Zustand store — unchanged API surface, frontend-only impl
+// ─────────────────────────────────────────────────────────────────────────────
 import { create } from 'zustand';
 import { authService } from '../services/auth.js';
 

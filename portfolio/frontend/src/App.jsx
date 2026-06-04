@@ -6,23 +6,25 @@ import Footer from './components/Footer.jsx';
 import CursorFollower from './components/CursorFollower.jsx';
 import Loader from './components/Loader.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
+import SecretGuard from './components/SecretGuard.jsx';
 import { useAuthStore } from './store/authStore.js';
 import { trackPageView } from './services/analytics.js';
 
-const Home = lazy(() => import('./pages/Home.jsx'));
-const Projects = lazy(() => import('./pages/Projects.jsx'));
-const ProjectDetail = lazy(() => import('./pages/ProjectDetail.jsx'));
-const Blog = lazy(() => import('./pages/Blog.jsx'));
-const BlogDetail = lazy(() => import('./pages/BlogDetail.jsx'));
-const Contact = lazy(() => import('./pages/Contact.jsx'));
-const Login = lazy(() => import('./pages/Login.jsx'));
-const NotFound = lazy(() => import('./pages/NotFound.jsx'));
-const AdminLayout = lazy(() => import('./pages/admin/AdminLayout.jsx'));
-const Dashboard = lazy(() => import('./pages/admin/Dashboard.jsx'));
-const ProjectsAdmin = lazy(() => import('./pages/admin/ProjectsAdmin.jsx'));
-const BlogsAdmin = lazy(() => import('./pages/admin/BlogsAdmin.jsx'));
-const MessagesAdmin = lazy(() => import('./pages/admin/MessagesAdmin.jsx'));
-const AnalyticsAdmin = lazy(() => import('./pages/admin/AnalyticsAdmin.jsx'));
+const Home              = lazy(() => import('./pages/Home.jsx'));
+const Projects          = lazy(() => import('./pages/Projects.jsx'));
+const ProjectDetail     = lazy(() => import('./pages/ProjectDetail.jsx'));
+const Blog              = lazy(() => import('./pages/Blog.jsx'));
+const BlogDetail        = lazy(() => import('./pages/BlogDetail.jsx'));
+const Contact           = lazy(() => import('./pages/Contact.jsx'));
+const Login             = lazy(() => import('./pages/Login.jsx'));
+const NotFound          = lazy(() => import('./pages/NotFound.jsx'));
+const AdminLayout       = lazy(() => import('./pages/admin/AdminLayout.jsx'));
+const Dashboard         = lazy(() => import('./pages/admin/Dashboard.jsx'));
+const ProjectsAdmin     = lazy(() => import('./pages/admin/ProjectsAdmin.jsx'));
+const BlogsAdmin        = lazy(() => import('./pages/admin/BlogsAdmin.jsx'));
+const TestimonialsAdmin = lazy(() => import('./pages/admin/TestimonialsAdmin.jsx'));
+const MessagesAdmin     = lazy(() => import('./pages/admin/MessagesAdmin.jsx'));
+const AnalyticsAdmin    = lazy(() => import('./pages/admin/AnalyticsAdmin.jsx'));
 
 export default function App() {
   const { hydrate } = useAuthStore();
@@ -46,20 +48,21 @@ export default function App() {
             className="min-h-screen"
           >
             <Routes location={location}>
-              <Route path="/" element={<Home />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/projects/:slug" element={<ProjectDetail />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:slug" element={<BlogDetail />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/login" element={<Login />} />
-              <Route element={<ProtectedRoute role="admin" />}>
+              <Route path="/"                  element={<Home />} />
+              <Route path="/projects"          element={<Projects />} />
+              <Route path="/projects/:slug"    element={<ProjectDetail />} />
+              <Route path="/blog"              element={<Blog />} />
+              <Route path="/blog/:slug"        element={<BlogDetail />} />
+              <Route path="/contact"           element={<Contact />} />
+              <Route path="/login"             element={<SecretGuard><Login /></SecretGuard>} />
+              <Route element={<SecretGuard><ProtectedRoute role="admin" /></SecretGuard>}>
                 <Route path="/admin" element={<AdminLayout />}>
-                  <Route index element={<Dashboard />} />
-                  <Route path="projects" element={<ProjectsAdmin />} />
-                  <Route path="blogs" element={<BlogsAdmin />} />
-                  <Route path="messages" element={<MessagesAdmin />} />
-                  <Route path="analytics" element={<AnalyticsAdmin />} />
+                  <Route index                element={<Dashboard />} />
+                  <Route path="projects"      element={<ProjectsAdmin />} />
+                  <Route path="blogs"         element={<BlogsAdmin />} />
+                  <Route path="testimonials"  element={<TestimonialsAdmin />} />
+                  <Route path="messages"      element={<MessagesAdmin />} />
+                  <Route path="analytics"     element={<AnalyticsAdmin />} />
                 </Route>
               </Route>
               <Route path="*" element={<NotFound />} />

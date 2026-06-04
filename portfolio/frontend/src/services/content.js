@@ -1,24 +1,91 @@
-import { api } from './api.js';
+// ─────────────────────────────────────────────────────────────────────────────
+//  content.js  ·  Frontend-only content services (replaces the backend API)
+// ─────────────────────────────────────────────────────────────────────────────
+import { db } from './api.js';
+
+// ── Projects ──────────────────────────────────────────────────────────────────
 export const projectsService = {
-  list: (params) => api.get('/projects', { params }).then((r) => r.data),
-  get: (idOrSlug) => api.get(`/projects/${idOrSlug}`).then((r) => r.data),
-  create: (data) => api.post('/projects', data).then((r) => r.data),
-  update: (id, data) => api.put(`/projects/${id}`, data).then((r) => r.data),
-  remove: (id) => api.delete(`/projects/${id}`).then((r) => r.data),
+  list({ limit = 50, page = 1, q } = {}) {
+    let data = db.projects.all().sort((a, b) => a.order - b.order);
+    if (q) data = data.filter((p) => p.title.toLowerCase().includes(q.toLowerCase()));
+    const total = data.length;
+    data = data.slice((page - 1) * limit, page * limit);
+    return Promise.resolve({ data, total, page });
+  },
+  get(idOrSlug) {
+    const doc = db.projects.find(idOrSlug);
+    if (!doc) return Promise.reject(new Error('Not found'));
+    return Promise.resolve(doc);
+  },
+  create(data) {
+    const doc = db.projects.create(data);
+    return Promise.resolve(doc);
+  },
+  update(id, data) {
+    const doc = db.projects.update(id, data);
+    if (!doc) return Promise.reject(new Error('Not found'));
+    return Promise.resolve(doc);
+  },
+  remove(id) {
+    db.projects.remove(id);
+    return Promise.resolve({ ok: true });
+  },
 };
+
+// ── Blogs ─────────────────────────────────────────────────────────────────────
 export const blogsService = {
-  list: (params) => api.get('/blogs', { params }).then((r) => r.data),
-  get: (idOrSlug) => api.get(`/blogs/${idOrSlug}`).then((r) => r.data),
-  create: (data) => api.post('/blogs', data).then((r) => r.data),
-  update: (id, data) => api.put(`/blogs/${id}`, data).then((r) => r.data),
-  remove: (id) => api.delete(`/blogs/${id}`).then((r) => r.data),
+  list({ limit = 50, page = 1 } = {}) {
+    let data = db.blogs.all().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    const total = data.length;
+    data = data.slice((page - 1) * limit, page * limit);
+    return Promise.resolve({ data, total, page });
+  },
+  get(idOrSlug) {
+    const doc = db.blogs.find(idOrSlug);
+    if (!doc) return Promise.reject(new Error('Not found'));
+    // increment views
+    db.blogs.update(doc._id, { views: (doc.views || 0) + 1 });
+    return Promise.resolve(doc);
+  },
+  create(data) {
+    const doc = db.blogs.create(data);
+    return Promise.resolve(doc);
+  },
+  update(id, data) {
+    const doc = db.blogs.update(id, data);
+    if (!doc) return Promise.reject(new Error('Not found'));
+    return Promise.resolve(doc);
+  },
+  remove(id) {
+    db.blogs.remove(id);
+    return Promise.resolve({ ok: true });
+  },
 };
+
+// ── Testimonials ──────────────────────────────────────────────────────────────
 export const testimonialsService = {
-  list: () => api.get('/testimonials').then((r) => r.data),
+  list() {
+    const data = db.testimonials.query((t) => t.approved);
+    return Promise.resolve({ data });
+  },
 };
+
+// ── Messages ──────────────────────────────────────────────────────────────────
 export const messagesService = {
-  send: (data) => api.post('/messages', data).then((r) => r.data),
-  list: () => api.get('/messages').then((r) => r.data),
-  markRead: (id) => api.patch(`/messages/${id}/read`).then((r) => r.data),
-  remove: (id) => api.delete(`/messages/${id}`).then((r) => r.data),
+  send(data) {
+    const doc = db.messages.create({ ...data, read: false });
+    return Promise.resolve({ ok: true, id: doc._id });
+  },
+  list() {
+    const data = db.messages.all().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    return Promise.resolve({ data });
+  },
+  markRead(id) {
+    const doc = db.messages.update(id, { read: true });
+    return Promise.resolve(doc);
+  },
+  remove(id) {
+    db.messages.remove(id);
+    return Promise.resolve({ ok: true });
+  },
 };

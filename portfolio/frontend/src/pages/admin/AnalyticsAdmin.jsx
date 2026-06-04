@@ -6,12 +6,25 @@ export default function AnalyticsAdmin() {
   const [s, setS] = useState(null);
   useEffect(() => { fetchAnalyticsSummary().then(setS).catch(() => {}); }, []);
 
+  // Support both backend aggregation format `{ _id: { d, t }, n }` and
+  // the frontend/local format `{ day: 'YYYY-MM-DD', page_view: 1, ... }`.
   const series = useMemo(() => {
     if (!s?.byDay) return [];
     const map = {};
     for (const r of s.byDay) {
-      map[r._id.d] ??= { day: r._id.d };
-      map[r._id.d][r._id.t] = r.n;
+      if (r?._id) {
+        const day = r._id.d;
+        const type = r._id.t;
+        map[day] ??= { day };
+        map[day][type] = r.n;
+      } else if (r?.day) {
+        const day = r.day;
+        map[day] ??= { day };
+        for (const [k, v] of Object.entries(r)) {
+          if (k === 'day') continue;
+          map[day][k] = v;
+        }
+      }
     }
     return Object.values(map).sort((a, b) => a.day.localeCompare(b.day));
   }, [s]);
