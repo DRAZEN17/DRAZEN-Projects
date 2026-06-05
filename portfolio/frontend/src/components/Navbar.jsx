@@ -46,8 +46,8 @@ export default function Navbar() {
           ))}
         </ul>
         <div className="hidden md:flex items-center gap-3">
-          {user && isAdmin() && <Link to="/admin" className="text-sm text-neon-cyan hover:underline">Admin</Link>}
-          {!user && <Link to="/login" className="text-sm text-muted hover:text-white">Login</Link>}
+          {user && isAdmin() && <Link to="/admin" className="text-sm text-neon-cyan hover:underline">.</Link>}
+          {!user && <Link to="/login" className="text-sm text-muted hover:text-white">.</Link>}
         </div>
         <button className="md:hidden p-2" onClick={() => setOpen(!open)} aria-label="Menu">
           <span className="block h-0.5 w-6 bg-white mb-1.5" />
