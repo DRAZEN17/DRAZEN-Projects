@@ -6,7 +6,6 @@ import Footer from './components/Footer.jsx';
 import CursorFollower from './components/CursorFollower.jsx';
 import Loader from './components/Loader.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
-import SecretGuard from './components/SecretGuard.jsx';
 import { useAuthStore } from './store/authStore.js';
 import { trackPageView } from './services/analytics.js';
 
@@ -54,8 +53,8 @@ export default function App() {
               <Route path="/blog"              element={<Blog />} />
               <Route path="/blog/:slug"        element={<BlogDetail />} />
               <Route path="/contact"           element={<Contact />} />
-              <Route path="/login"             element={<SecretGuard><Login /></SecretGuard>} />
-              <Route element={<SecretGuard><ProtectedRoute role="admin" /></SecretGuard>}>
+              <Route path="/login"             element={<Login />} />
+              <Route element={<ProtectedRoute role="admin" />}>
                 <Route path="/admin" element={<AdminLayout />}>
                   <Route index                element={<Dashboard />} />
                   <Route path="projects"      element={<ProjectsAdmin />} />

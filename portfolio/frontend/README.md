@@ -28,8 +28,8 @@ npm run dev
 Open `http://localhost:5173` — sample projects, blogs, and testimonials are seeded automatically on first load.
 
 ### Admin login (default)
-- **Email:** `admin@portfolio.dev`
-- **Password:** `admin1234`
+- **Email:** `drazen90sea@gmail.com`
+- **Password:** `draxly170`
 
 > Change the seed in `src/services/seed.js` before deploying.
 

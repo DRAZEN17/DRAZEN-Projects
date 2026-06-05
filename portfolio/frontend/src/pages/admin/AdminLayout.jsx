@@ -18,7 +18,6 @@ export default function AdminLayout() {
       <aside className="glass p-5 h-fit sticky top-28">
         <div className="text-xs font-mono text-muted">Signed in</div>
         <div className="font-display text-lg">{user?.name}</div>
-        <div className="text-xs text-muted mt-1 font-mono">localStorage mode</div>
         <nav className="mt-6 flex flex-col gap-1">
           {links.map((l) => (
             <NavLink

@@ -119,16 +119,16 @@ export function seedIfEmpty() {
     },
   ]);
 
-  // ── Admin user (password: admin1234) ───────────────────────────────────────
+  // ── Admin user (password: draxly170) ───────────────────────────────────────
   if (db.users.all().length === 0) {
     // We store a bcrypt hash so the login check uses bcrypt.compare
     const hash = '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'; // "password" bcrypt
     // For a portfolio demo, we use a simpler pre-hashed password
     db.users.create({
       name: 'DRAZEN Admin',
-      email: 'admin@portfolio.dev',
-      // bcrypt hash of "admin1234"
-      password: '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LjFYyMnJH5a',
+      email: 'drazen90sea@gmail.com',
+      // default demo password (plaintext for this frontend-only demo)
+      password: 'draxly170',
       role: 'admin',
     });
   }
