@@ -61,8 +61,8 @@ export default function Navbar() {
             {links.map((l) => (
               <li key={l.to}><NavLink to={l.to} className="text-lg">{l.label}</NavLink></li>
             ))}
-            {user && isAdmin() && <li><Link to="/admin" className="text-neon-cyan">Admin</Link></li>}
-            {!user && <li><Link to="/login">Login</Link></li>}
+            {user && isAdmin() && <li><Link to="/admin" className="text-neon-cyan">.</Link></li>}
+            {!user && <li><Link to="/login">.</Link></li>}
           </ul>
         </div>
       )}
