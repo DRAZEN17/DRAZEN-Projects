@@ -17,9 +17,9 @@ export default function NavBar({
             onClick={() => setSelectedCategory("all")}
           >
             <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-lg">
-              G
+              A&A
             </div>
-            <span className="text-xl font-bold tracking-tight">DRAZEN Store</span>
+            <span className="text-xl font-bold tracking-tight">ALL & ALL Store</span>
           </div>
 
           <div className="hidden md:flex items-center bg-gray-100 px-4 py-2 rounded-full w-96 focus-within:ring-2 focus-within:ring-blue-500/20 transition-shadow">
