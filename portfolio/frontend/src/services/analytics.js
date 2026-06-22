@@ -12,7 +12,6 @@ function track(type, extra = {}) {
 
 export const trackPageView   = (path)  => track('page_view',    { path, referrer: document.referrer });
 export const trackProjectClick = (refId) => {
-  // also increment the project's click counter
   try {
     const p = db.projects.find(refId);
     if (p) db.projects.update(p._id, { clicks: (p.clicks || 0) + 1 });

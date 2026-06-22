@@ -25,7 +25,7 @@ export default function Hero() {
           web experiences.
         </h1>
         <p className="hero-sub mt-8 max-w-xl text-lg text-muted">
-          A Web Developer crafting fast, beautiful, production-grade products.
+          A Web Developer crafting fast, beautiful, production-grade designs.
           Obsessed with motion, performance, and details that make software feel alive.
         </p>
         <div className="hero-cta mt-10 flex flex-wrap gap-4">

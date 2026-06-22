@@ -8,7 +8,9 @@ export default function Projects() {
   const [filter, setFilter] = useState('all');
 
   useEffect(() => { projectsService.list({ limit: 100 }).then((r) => setItems(r.data || [])); }, []);
-  const tags = useMemo(() => ['all', ...new Set(items.flatMap((i) => i.techStack || []))], [items]);
+  // Use a fixed, custom list of filter labels instead of deriving from project tags
+  const CUSTOM_TAGS = ['all', 'React', 'Python', 'Node.js (backends)', 'UI/UX', 'Flutter/Dart', 'Java'];
+  const tags = CUSTOM_TAGS;
   const filtered = filter === 'all' ? items : items.filter((i) => i.techStack?.includes(filter));
 
   return (

@@ -11,7 +11,7 @@ export default function About() {
       <h2 className="h2 mt-4 fade-up max-w-3xl">A developer who treats interfaces like cinema.</h2>
       <div className="grid md:grid-cols-3 gap-8 mt-12">
         <p className="md:col-span-2 text-lg text-muted leading-relaxed fade-up">
-          I'm a Web developer focused on building digital products that combine engineering rigor
+          I'm a Web developer focused on building digital designs that combine engineering rigor
           with cinematic motion design. From real-time dashboards to e-commerce platforms,
           I ship fast, accessible, and visually striking interfaces backed by robust APIs.
         </p>
