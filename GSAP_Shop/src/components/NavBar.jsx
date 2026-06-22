@@ -16,7 +16,7 @@ export default function NavBar({
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => setSelectedCategory("all")}
           >
-            <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-lg">
+            <div className="w-10 h-10 bg-black rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-lg">
               A&A
             </div>
             <span className="text-xl font-bold tracking-tight">ALL & ALL Store</span>
