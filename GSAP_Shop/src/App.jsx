@@ -1,11 +1,5 @@
-import React from 'react'
-import Home from './Home.jsx'
-const App = () => {
-  return (
-    <>
-      <Home />
-    </>
-  )
-}
+import Home from "./Home.jsx";
 
-export default App
+export default function App() {
+  return <Home />;
+}

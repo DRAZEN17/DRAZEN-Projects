@@ -1,39 +1,34 @@
-// Shared data and product generation
+// Shared catalog data and product generation.
 export const CATEGORIES = [
   {
     id: "tech",
     name: "Electronics",
-    color: "3b82f6",
-    icon: "💻",
-    keywords: "technology,gadget",
+    dept: "01",
+    accent: "stamp",
   },
   {
     id: "fashion",
     name: "Fashion",
-    color: "ec4899",
-    icon: "👕",
-    keywords: "clothing,fashion",
+    dept: "02",
+    accent: "moss",
   },
   {
     id: "home",
     name: "Home & Living",
-    color: "10b981",
-    icon: "🏠",
-    keywords: "furniture,interior",
+    dept: "03",
+    accent: "stamp",
   },
   {
     id: "sports",
-    name: "Sports",
-    color: "f59e0b",
-    icon: "⚽",
-    keywords: "sports,fitness",
+    name: "Sport",
+    dept: "04",
+    accent: "moss",
   },
   {
     id: "toys",
-    name: "Toys & Hobbies",
-    color: "8b5cf6",
-    icon: "🎮",
-    keywords: "toy,game",
+    name: "Toys & Hobby",
+    dept: "05",
+    accent: "stamp",
   },
 ];
 
@@ -66,7 +61,7 @@ export const NOUNS = {
   fashion: [
     "Jacket",
     "Sneakers",
-    "Tshirt",
+    "T-Shirt",
     "Backpack",
     "Sunglasses",
     "Watch",
@@ -100,12 +95,12 @@ export const NOUNS = {
     "Bicycle",
   ],
   toys: [
-    "Robot",
-    "Lego",
+    "Robot Kit",
+    "Building Blocks",
     "Doll",
     "Toy Car",
     "Puzzle",
-    "Drone",
+    "Mini Drone",
     "Teddy Bear",
     "Action Figure",
     "Kite",
@@ -113,32 +108,50 @@ export const NOUNS = {
   ],
 };
 
+// Simple deterministic PRNG (mulberry32) so the catalog is stable across
+// reloads instead of reshuffling every time the module is evaluated.
+const createRng = (seed) => {
+  let a = seed;
+  return () => {
+    a |= 0;
+    a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+};
+
 export const generateProducts = () => {
+  const rng = createRng(42);
   const products = [];
   let idCounter = 1;
 
   CATEGORIES.forEach((cat) => {
     for (let i = 0; i < 20; i++) {
-      const noun = NOUNS[cat.id][Math.floor(Math.random() * NOUNS[cat.id].length)];
-      const adj = ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)];
-      const price = Math.floor(Math.random() * 200) + 20;
-
-      const imageKeyword = `${cat.keywords},${noun.replace(" ", "")}`;
+      const noun = NOUNS[cat.id][Math.floor(rng() * NOUNS[cat.id].length)];
+      const adj = ADJECTIVES[Math.floor(rng() * ADJECTIVES.length)];
+      const price = Math.floor(rng() * 200) + 20;
+      const sku = `${cat.dept}-${String(idCounter).padStart(4, "0")}`;
 
       products.push({
         id: idCounter++,
+        sku,
         name: `${adj} ${noun}`,
         category: cat.id,
-        price: price,
-        rating: (Math.random() * 1.5 + 3.5).toFixed(1),
-        reviews: Math.floor(Math.random() * 500) + 10,
-        image: `https://loremflickr.com/400/300/${encodeURIComponent(imageKeyword)}?lock=${idCounter}`,
-        description: `Experience the best quality with our ${adj.toLowerCase()} ${noun.toLowerCase()}. Designed for the modern lifestyle and perfect for your daily needs.`,
+        price,
+        rating: (rng() * 1.5 + 3.5).toFixed(1),
+        reviews: Math.floor(rng() * 500) + 10,
+        image: `https://picsum.photos/seed/${cat.id}-${idCounter}/480/360`,
+        description: `Experience the best quality with our ${adj.toLowerCase()} ${noun.toLowerCase()}. Designed for the modern lifestyle and built to last.`,
       });
     }
   });
 
-  return products.sort(() => Math.random() - 0.5);
+  // Deterministic shuffle so order is stable but not grouped by category.
+  return products
+    .map((p) => ({ p, key: rng() }))
+    .sort((a, b) => a.key - b.key)
+    .map(({ p }) => p);
 };
 
 export const ALL_PRODUCTS = generateProducts();

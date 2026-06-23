@@ -1,16 +1,46 @@
-# React + Vite
+# Index No. 9
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A demo storefront catalog built with React, Vite, Tailwind CSS v4, and GSAP.
+Browse five numbered departments (Electronics, Fashion, Home & Living,
+Sport, Toys & Hobby), search the index, and add items to a cart drawer with
+live subtotal/tax/total calculation.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 19** + **Vite 7** — app shell and dev server
+- **Tailwind CSS v4** — utility styling, theme tokens defined in `src/index.css`
+- **GSAP** — entrance and hover animations, scoped per-component with `gsap.context`
+- **lucide-react** — icon set
 
-## React Compiler
+## Getting started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+npm run dev      # start the dev server
+npm run build    # production build to dist/
+npm run lint      # run eslint
+```
 
-## Expanding the ESLint configuration
+## Project structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+src/
+  Home.jsx              orchestrates state: cart, filters, pagination
+  data.jsx              catalog generation (deterministic, seeded)
+  components/
+    NavBar.jsx          search + cart trigger
+    Hero.jsx            catalog cover + department index
+    MainContent.jsx      product grid + pagination
+    ProductCard.jsx      individual catalog entry
+    CartDrawer.jsx       slide-over cart with quantity controls
+    Footer.jsx
+  hooks/
+    useGsap.jsx          shared gsap instance + scoped animation helper
+```
+
+## Notes
+
+- Catalog data is generated with a seeded PRNG so the same 100 items and
+  prices appear on every load instead of reshuffling on each page refresh.
+- Product photos are served from `picsum.photos` with a deterministic seed
+  per item; a fallback state is shown if an image fails to load.
