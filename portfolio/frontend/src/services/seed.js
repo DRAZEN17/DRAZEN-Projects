@@ -48,20 +48,6 @@ export function seedIfEmpty() {
       order: 2,
       clicks: 0,
     },
-    {
-      title: 'Motion Design System',
-      slug: 'motion-design-system',
-      description: 'A comprehensive component library with 60+ animated UI primitives and design tokens.',
-      longDescription: 'Built with React, Storybook, Radix UI, Framer Motion, and stitches.dev.',
-      coverImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80',
-      techStack: ['React', 'Storybook', 'Framer Motion', 'Radix UI'],
-      category: 'design',
-      githubUrl: 'https://github.com',
-      liveUrl: 'https://example.com',
-      featured: false,
-      order: 3,
-      clicks: 0,
-    },
   ]);
 
   // ── Blogs ──────────────────────────────────────────────────────────────────
