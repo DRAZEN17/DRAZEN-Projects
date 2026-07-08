@@ -62,16 +62,6 @@ export function seedIfEmpty() {
       published: true,
       views: 0,
     },
-    {
-      title: 'Why TypeScript Pays for Itself on Day 30',
-      slug: 'typescript-roi',
-      excerpt: 'The real value of TypeScript isn\'t compile-time safety — it\'s the documentation, refactoring confidence, and team velocity it enables.',
-      content: 'Most TypeScript debates miss the point.\n\nCompile-time errors are the obvious benefit. The real win shows up around day 30 of a project: when you rename a function and every call site lights up red, when you hover a prop and see exactly what it accepts, when a new team member can navigate unfamiliar code in minutes instead of hours.\n\nTypeScript is living documentation. Types encode intent in a way that comments rot and readmes ignore. A `type User = { id: string; role: \'admin\' | \'viewer\' }` communicates more than three paragraphs of prose.\n\nThe refactoring story is equally compelling. In a large codebase, changing an API shape in JavaScript means grep + prayer. In TypeScript, the compiler finds every usage and flags breakage before a single test runs.\n\nTeam velocity compounds. Senior devs move faster because they trust the types. Junior devs make fewer runtime errors. PRs are smaller because the type checker catches edge cases early.\n\nStart with `strict: true` on day one. The initial friction is a fraction of the accumulated benefit.',
-      coverImage: 'https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=900&q=80',
-      tags: ['TypeScript', 'Engineering', 'Best Practices'],
-      published: true,
-      views: 0,
-    },
   ]);
 
   // ── Testimonials ───────────────────────────────────────────────────────────
@@ -85,35 +75,15 @@ export function seedIfEmpty() {
       rating: 5,
       approved: true,
     },
-    {
-      name: 'Marcus Webb',
-      role: 'Founder',
-      company: 'Axiom Labs',
-      avatar: 'https://i.pravatar.cc/80?img=3',
-      quote: 'The most technically rigorous frontend dev I\'ve worked with. Delivered a real-time dashboard that loads in under 1 second.',
-      rating: 5,
-      approved: true,
-    },
-    {
-      name: 'Priya Kapoor',
-      role: 'Product Lead',
-      company: 'Surge Digital',
-      avatar: 'https://i.pravatar.cc/80?img=5',
-      quote: 'Every pixel, every transition, every edge case — handled with obsessive care. Will definitely collaborate again.',
-      rating: 5,
-      approved: true,
-    },
   ]);
 
   // ── Admin user (password: draxly170) ───────────────────────────────────────
   if (db.users.all().length === 0) {
     // We store a bcrypt hash so the login check uses bcrypt.compare
-    const hash = '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'; // "password" bcrypt
-    // For a portfolio demo, we use a simpler pre-hashed password
+    const hash = '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
     db.users.create({
       name: 'DRAZEN Admin',
       email: 'drazen90sea@gmail.com',
-      // default demo password (plaintext for this frontend-only demo)
       password: 'draxly170',
       role: 'admin',
     });
