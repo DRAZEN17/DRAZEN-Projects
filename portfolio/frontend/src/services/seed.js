@@ -2,56 +2,68 @@
 //  seed.js  ·  Seed initial data into localStorage on first load
 // ─────────────────────────────────────────────────────────────────────────────
 import { db } from './api.js';
-import anidarCover from '../Assets/Screenshot 2026-07-08 172141.png';
-import drazenCover from '../Assets/Screenshot 2026-07-08 172931.png';
-import sxtCover from '../Assets/flyer.jpg';
+
+const anidarCover = new URL('../Assets/Screenshot 2026-07-08 172141.png', import.meta.url).href;
+const drazenCover = new URL('../Assets/Screenshot 2026-07-08 172931.png', import.meta.url).href;
+const sxtCover = new URL('../Assets/flyer.jpg', import.meta.url).href;
+
+const seededProjects = [
+  {
+    title: 'anidar',
+    slug: 'cinematic-portfolio',
+    description: ' A personal website made with tailwind and react  website  made for browsing anime, manhwa and manhua ,updates, release dates and details.',
+    longDescription: '',
+    coverImage: anidarCover,
+    techStack: ['React', 'TailwindCSS', 'Vite'],
+    category: 'web',
+    githubUrl: 'https://github.com/DRAZEN17/DRAZEN-Projects/tree/f5edc523542547396e842a620726aef0f9c17029/anidar',
+    liveUrl: 'https://anidar.vercel.app/',
+    featured: true,
+    order: 0,
+    clicks: 0,
+  },
+  {
+    title: 'DRAZEN PAVILLION',
+    slug: 'drazen-pavillion',
+    description: ' A personal website made with tailwind and react  website  made for browsing, renting, selling and buying houses ',
+    longDescription: '',
+    coverImage: drazenCover,
+    techStack: ['React', 'TailwindCSS', 'Vite'],
+    category: 'web',
+    githubUrl: 'https://github.com/DRAZEN17/DRAZEN-Projects/tree/2d2caddcb2c06876f0d37264013632e09f298e21/drazen-pavillion',
+    liveUrl: 'https://drazen-pavillion.vercel.app',
+    featured: true,
+    order: 1,
+    clicks: 0,
+  },
+  {
+    title: 'SXT PRINTING',
+    slug: 'sxt printing',
+    description: 'Professional printing and graphic design services.',
+    longDescription: '',
+    coverImage: sxtCover,
+    techStack: ['UI/UX'],
+    category: 'flyer',
+    githubUrl: '',
+    liveUrl: '',
+    featured: true,
+    order: 2,
+    clicks: 0,
+  },
+];
 
 export function seedIfEmpty() {
   // ── Projects ───────────────────────────────────────────────────────────────
-  db.projects.seed([
-    {
-      title: 'anidar',
-      slug: 'cinematic-portfolio',
-      description: ' A personal website made with tailwind and react  website  made for browsing anime, manhwa and manhua ,updates, release dates and details.',
-      longDescription: '',
-      coverImage: anidarCover,
-      techStack: ['React', 'TailwindCSS', 'Vite'],
-      category: 'web',
-      githubUrl: 'https://github.com/DRAZEN17/DRAZEN-Projects/tree/f5edc523542547396e842a620726aef0f9c17029/anidar',
-      liveUrl: 'https://anidar.vercel.app/',
-      featured: true,
-      order: 0,
-      clicks: 0,
-    },
-    {
-      title: 'DRAZEN PAVILLION',
-      slug: 'drazen-pavillion',
-      description: ' A personal website made with tailwind and react  website  made for browsing, renting, selling and buying houses ',
-      longDescription: '',
-      coverImage: drazenCover,
-      techStack: ['React', 'TailwindCSS', 'Vite'],
-      category: 'web',
-      githubUrl: 'https://github.com/DRAZEN17/DRAZEN-Projects/tree/2d2caddcb2c06876f0d37264013632e09f298e21/drazen-pavillion',
-      liveUrl: 'drazen-pavillion.vercel.app',
-      featured: true,
-      order: 1,
-      clicks: 0,
-    },
-    {
-      title: 'SXT PRINTING',
-      slug: 'sxt printing',
-      description: 'Professional printing and graphic design services.',
-      longDescription: '',
-      coverImage: sxtCover,
-      techStack: ['UI/UX'],
-      category: 'flyer',
-      githubUrl: '',
-      liveUrl: '',
-      featured: true,
-      order: 2,
-      clicks: 0,
-    },
-  ]);
+  if (db.projects.all().length === 0) {
+    db.projects.seed(seededProjects);
+  } else {
+    seededProjects.forEach((project) => {
+      const existing = db.projects.query((d) => d.slug === project.slug)[0];
+      if (existing && existing.coverImage !== project.coverImage) {
+        db.projects.update(existing._id, { coverImage: project.coverImage });
+      }
+    });
+  }
 
   // ── Blogs ──────────────────────────────────────────────────────────────────
   db.blogs.seed([
