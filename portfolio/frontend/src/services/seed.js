@@ -2,6 +2,9 @@
 //  seed.js  ·  Seed initial data into localStorage on first load
 // ─────────────────────────────────────────────────────────────────────────────
 import { db } from './api.js';
+import anidarCover from '../Assets/Screenshot 2026-07-08 172141.png';
+import drazenCover from '../Assets/Screenshot 2026-07-08 172931.png';
+import sxtCover from '../Assets/flyer.jpg';
 
 export function seedIfEmpty() {
   // ── Projects ───────────────────────────────────────────────────────────────
@@ -11,7 +14,7 @@ export function seedIfEmpty() {
       slug: 'cinematic-portfolio',
       description: ' A personal website made with tailwind and react  website  made for browsing anime, manhwa and manhua ,updates, release dates and details.',
       longDescription: '',
-      coverImage: "C:\\Users\\Dazen17\\Documents\\projectreact\\portfolio\\frontend\\src\\Assets\\Screenshot 2026-07-08 172141.png",
+      coverImage: anidarCover,
       techStack: ['React', 'TailwindCSS', 'Vite'],
       category: 'web',
       githubUrl: 'https://github.com/DRAZEN17/DRAZEN-Projects/tree/f5edc523542547396e842a620726aef0f9c17029/anidar',
@@ -25,7 +28,7 @@ export function seedIfEmpty() {
       slug: 'drazen-pavillion',
       description: ' A personal website made with tailwind and react  website  made for browsing, renting, selling and buying houses ',
       longDescription: '',
-      coverImage: "C:\\Users\\Dazen17\\Documents\\projectreact\\portfolio\\frontend\\src\\Assets\\Screenshot 2026-07-08 172931.png",
+      coverImage: drazenCover,
       techStack: ['React', 'TailwindCSS', 'Vite'],
       category: 'web',
       githubUrl: 'https://github.com/DRAZEN17/DRAZEN-Projects/tree/2d2caddcb2c06876f0d37264013632e09f298e21/drazen-pavillion',
@@ -39,7 +42,7 @@ export function seedIfEmpty() {
       slug: 'sxt printing',
       description: 'Professional printing and graphic design services.',
       longDescription: '',
-      coverImage: "C:\\Users\\Dazen17\\Documents\\projectreact\\portfolio\\frontend\\src\\Assets\\flyer.jpg",
+      coverImage: sxtCover,
       techStack: ['UI/UX'],
       category: 'flyer',
       githubUrl: '',
