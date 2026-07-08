@@ -37,7 +37,7 @@ export function seedIfEmpty() {
     {
       title: 'SXT PRINTING',
       slug: 'sxt printing',
-      description: 'PROFESSIONAL PRINTING & GRAPHIC DESIGN SERVICES.',
+      description: 'Professional printing and graphic design services.',
       longDescription: '',
       coverImage: "C:\\Users\\Dazen17\\Documents\\projectreact\\portfolio\\frontend\\src\\Assets\\flyer.jpg",
       techStack: ['UI/UX'],
