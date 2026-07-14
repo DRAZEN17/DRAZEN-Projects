@@ -39,7 +39,8 @@ export async function fetchContent(view = "anime", search = "") {
     }
   }
 
-  const url = `${API_BASE}${endpoint}?${params.toString()}`;
+  const query = params.toString();
+  const url = `${API_BASE}${endpoint}${query ? `?${query}` : ''}`;
   const res = await fetchWithRetry(url);
   return res.data || [];
 }

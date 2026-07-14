@@ -8,14 +8,15 @@ export default function DetailModal({ selectedItem, setSelectedItem, handleExter
 
   useEffect(() => {
     if (!selectedItem) {
+      setDetail(null)
       return
     }
-    
+
     let mounted = true
-    
+    setLoading(true)
+
     fetchById(selectedItem.type || 'anime', selectedItem.mal_id)
-    .then((d) => {
-        setLoading(true)
+      .then((d) => {
         if (mounted) setDetail(d)
       })
       .catch((err) => {
