@@ -1,23 +1,23 @@
 const API_BASE = "https://api.jikan.moe/v4";
 const detailCache = new Map();
 
-async function fetchWithRetry(url, retries = 3, backoff = 1000) {
-  try {
-    const res = await fetch(url);
-    if (!res.ok) {
-      if (res.status === 429 && retries > 0) {
-        await new Promise((r) => setTimeout(r, backoff));
-        return fetchWithRetry(url, retries - 1, backoff * 2);
+async function fetchWithRetry(url, retries = 3, delay = 1000) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) {
+        const retriable = [429, 500, 502, 503, 504].includes(res.status);
+        if (!retriable || i === retries - 1) {
+          throw new Error(`HTTP ${res.status}`);
+        }
+        await new Promise((r) => setTimeout(r, delay * (i + 1)));
+        continue;
       }
-      throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    } catch (err) {
+      if (i === retries - 1) throw err;
+      await new Promise((r) => setTimeout(r, delay * (i + 1)));
     }
-    return res.json();
-  } catch (err) {
-    if (retries > 0) {
-      await new Promise((r) => setTimeout(r, backoff));
-      return fetchWithRetry(url, retries - 1, backoff * 2);
-    }
-    throw err;
   }
 }
 
@@ -29,6 +29,7 @@ export async function fetchContent(view = "anime", search = "") {
     endpoint = view === "anime" ? "/anime" : "/manga";
     params.append("q", search);
     if (view === "manhwa") params.append("type", "manhwa");
+    params.append("limit", "24");
   } else {
     if (view === "anime") endpoint = "/top/anime";
     else if (view === "manga") endpoint = "/top/manga";
@@ -36,13 +37,28 @@ export async function fetchContent(view = "anime", search = "") {
       endpoint = "/manga";
       params.append("order_by", "popularity");
       params.append("type", "manhwa");
+      params.append("limit", "24");
     }
   }
 
   const query = params.toString();
   const url = `${API_BASE}${endpoint}${query ? `?${query}` : ''}`;
-  const res = await fetchWithRetry(url);
-  return res.data || [];
+
+  try {
+    const res = await fetchWithRetry(url);
+    return res.data || [];
+  } catch (error) {
+    if (view === "manhwa" && !search) {
+      const fallbackUrl = `${API_BASE}/top/manga?limit=50`;
+      try {
+        const fallbackRes = await fetchWithRetry(fallbackUrl);
+        return (fallbackRes.data || []).filter((item) => item.type && item.type.toLowerCase().includes("manhwa"));
+      } catch (fallbackError) {
+        console.warn("Manhwa fallback also failed:", fallbackError);
+      }
+    }
+    throw error;
+  }
 }
 
 export async function fetchById(type = "anime", id) {

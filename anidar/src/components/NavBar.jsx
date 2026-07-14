@@ -38,6 +38,20 @@ export default function NavBar({ view, setView, setSearchQuery, setShowAuthModal
           {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
+
+      {isMobileMenuOpen && (
+        <div className="absolute top-full left-0 w-full bg-[#0a0a0c] border-b border-white/5 py-4 flex flex-col items-center space-y-4 md:hidden">
+          {['anime', 'manga', 'manhwa'].map((t) => (
+            <button
+              key={t}
+              onClick={() => { setView(t); setIsMobileMenuOpen(false); }}
+              className={`text-[10px] font-black uppercase tracking-[0.2em] ${view === t ? 'text-red-500' : 'text-gray-400'}`}
+            >
+              {t}
+            </button>
+          ))}
+        </div>
+      )}
     </nav>
   )
 }

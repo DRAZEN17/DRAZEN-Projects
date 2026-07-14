@@ -1,13 +1,19 @@
 import React from 'react'
 import { Bookmark } from 'lucide-react'
 
-export default function MainContent({ loading, items, setSelectedItem, savedIds }) {
+export default function MainContent({ loading, items, setSelectedItem, savedIds, heading, error }) {
   return (
     <main className="max-w-7xl mx-auto px-4 md:px-6 py-12">
       <div className="flex items-center space-x-4 mb-8 md:mb-10">
-        <h2 className="text-xl md:text-3xl font-black italic uppercase tracking-tighter">Top Picks</h2>
+        <h2 className="text-xl md:text-3xl font-black italic uppercase tracking-tighter">{heading || 'Top Picks'}</h2>
         <div className="h-[2px] flex-1 bg-gradient-to-r from-red-600 to-transparent opacity-20" />
       </div>
+
+      {error && !loading && (
+        <div className="mb-8 rounded-3xl border border-red-600/40 bg-red-600/10 px-6 py-5 text-red-100 text-sm md:text-base">
+          {error}
+        </div>
+      )}
 
       {loading ? (
         <div className="flex flex-col items-center justify-center py-40 text-gray-500">

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { X, ExternalLink, Bookmark, Loader2 } from 'lucide-react'
 import { fetchById } from './api.jsx'
 
-export default function DetailModal({ selectedItem, setSelectedItem, handleExternalLink, toggleSave, savedIds }) {
+export default function DetailModal({ selectedItem, setSelectedItem, handleExternalLink, toggleSave, savedIds, view }) {
   const [detail, setDetail] = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -15,7 +15,11 @@ export default function DetailModal({ selectedItem, setSelectedItem, handleExter
     let mounted = true
     setLoading(true)
 
-    fetchById(selectedItem.type || 'anime', selectedItem.mal_id)
+    // Jikan only has /anime/{id} and /manga/{id} endpoints — "manhwa" is a
+    // subtype of manga, so it must be requested via the manga endpoint.
+    const category = view === 'anime' ? 'anime' : 'manga'
+
+    fetchById(category, selectedItem.mal_id)
       .then((d) => {
         if (mounted) setDetail(d)
       })
