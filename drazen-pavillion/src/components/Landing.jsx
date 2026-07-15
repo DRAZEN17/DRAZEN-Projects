@@ -3,7 +3,7 @@ import { ShieldCheck, AlertCircle, CheckCircle2 } from 'lucide-react'
 
 export default function Landing({ showAuthForm, warpIntoAuth, isLoginView, setIsLoginView, triggerPortal, authError, authSuccess, handleAuth, authForm, setAuthForm }) {
   return (
-    <div className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
+    <div className="relative min-h-screen flex items-center justify-center px-6 pt-24 pb-12 md:pt-28 overflow-hidden">
       <div className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
         <div className="w-[300px] h-[300px] md:w-[800px] md:h-[800px] bg-purple-600/20 rounded-full blur-[80px] md:blur-[150px] animate-pulse" />
       </div>
