@@ -6,9 +6,9 @@ const skills = [
   { name: 'React', value: 90 },
   { name: 'Node.js / Express', value: 73 },
   { name: 'MongoDB', value: 65 },
-  { name: 'GSAP', value: 70 },
-  { name: 'Three.js', value: 60 },
-  { name: 'Design Systems', value: 88 },
+  { name: 'Java', value: 70 },
+  { name: 'Python', value: 60 },
+  { name: 'HTML/CSS', value: 88 },
   { name: 'UI/UX', value: 92 },
   { name: 'Flutter/Dart', value: 79 },
 ];
