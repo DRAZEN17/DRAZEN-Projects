@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="Application.CountdownController" spacing="10" alignment="CENTER" style="-fx-padding:20;">
+    <Label fx:id="timeLabel" text="00:00.00" style="-fx-font-size:36px; -fx-font-weight:bold;"/>
+    <GridPane hgap="6" vgap="6">
+        <Label text="Minutes:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="minutesField" text="0" prefWidth="60" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <Label text="Seconds:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="secondsField" text="0" prefWidth="60" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    </GridPane>
+    <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="startButton" text="Start" onAction="#onStart" prefWidth="80"/>
+        <Button fx:id="pauseButton" text="Pause" onAction="#onPause" prefWidth="80"/>
+        <Button fx:id="resetButton" text="Reset" onAction="#onReset" prefWidth="80"/>
+    </HBox>
+</VBox>

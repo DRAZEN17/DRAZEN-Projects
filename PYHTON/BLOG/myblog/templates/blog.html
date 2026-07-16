@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Homepage</title>
+    <link rel="stylesheet" href="{% static "css/blog.css" %}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">BlogSpace</div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="categories/">Categories</a></li>
+                    <li><a href="about/">About</a></li>
+                    <li><a href="contact_us/">Contact</a></li>
+                    <li>Hi {{request.user}}!</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('/static/img/abt.jpg') no-repeat center center/cover;">
+        <div class="container">
+            <h1>Welcome to BlogSpace</h1>
+            <p>Discover amazing articles on technology, design, business, and more</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <!-- Blog List -->
+        <div class="blog-list">
+            <!-- Blog Post 1 -->
+             {% for blog in blogs %}
+            <article class="blog-card">
+                <div class="blog-image">
+                    {% if blog.picture %}
+                    <img src="{{blog.picture.url}}" alt="{{blog.title}}">
+                    {% else %}
+                           <img src="{%  static "img/abt.jpg" %}" alt="">
+                    {% endif %}
+                </div>
+                <div class="blog-content">
+                    <div class="blog-date">{{blog.date_published}} • {{blog.category.name}} </div>
+                    <h2 class="blog-title"><a href="#">{{blog.title}}</a></h2>
+                    <p class="blog-excerpt">{{blog.sub_title}}</p>
+                    <a href="{% url "single" blog.pk %}" class="read-more">Read More →</a>
+                </div>
+            </article>
+            {% endfor %}
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="categories">
+                <h3>Categories</h3>
+                {% for category in categories %}
+                <ul>
+                    <li><a href="{% url "explore" category.id %}">{{category.name}} <span class="category-count">{{category.blog.count}}</span></a></li>
+                </ul>
+                {%empty%}
+                <li>no category</li>
+                {% endfor %}
+            </div>
+        </aside>
+    </div>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Stay updated with our latest articles and news. No spam, just valuable content.</p>
+            <form class="subscribe-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="logo">BlogSpace</div>
+            <div class="social-links">
+                <a href="#">Twitter</a>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">LinkedIn</a>
+            </div>
+            <p>&copy; 2023 BlogSpace. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/blog.js"></script>
+</body>
+</html>

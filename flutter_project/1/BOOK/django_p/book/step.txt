@@ -1,0 +1,177 @@
+1. Install & Setup (Backend)
+    pip install djangorestframework
+    pip install djangorestframework-simplejwt
+ii. In settings.py:
+    'rest_framework',
+    'rest_framework.authtoken', 
+🔹 2. Model (Book)
+    from django.db import models
+    from django.contrib.auth.models import User
+
+    class Book(models.Model):
+        user = models.ForeignKey(User, on_delete=models.CASCADE)
+        title = models.CharField(max_length=200)
+        author = models.CharField(max_length=200)
+
+        def __str__(self):
+            return self.title
+
+🔹 3. Serializer (🔥 VERY IMPORTANT)
+
+Think of serializer = bridge between Flutter and Django
+
+👉 Flutter sends JSON → Serializer converts → Django model
+👉 Django model → Serializer → JSON → Flutter
+
+ create serializers.py
+    from rest_framework import serializers
+    from .models import Book
+    from django.contrib.auth.models import User
+
+    class BookSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Book
+            fields = ['id', 'title', 'author']
+
+
+    class RegisterSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = User
+            fields = ['username', 'email', 'password']
+        
+        def create(self, validated_data):
+            user = User.objects.create_user(**validated_data)
+            return user
+
+user
+1. @api_view([...])
+This tells Django what type of request is allowed.
+POST → send data (login, signup, add)
+GET → fetch data (books)
+PUT → update data
+DELETE → delete data
+
+4. @permission_classes([IsAuthenticated])
+
+This protects your API.
+
+👉 Only logged-in users (with token) can access it.
+
+🔹 4. Views 
+    from rest_framework.decorators import api_view
+    from rest_framework.response import Response
+    from django.contrib.auth import authenticate
+    from rest_framework.authtoken.models import Token
+
+    @api_view(['POST'])
+    def login(request):
+        user = authenticate(
+            username=request.data['username'],
+            password=request.data['password']
+        )
+
+        if user:
+            token, _ = Token.objects.get_or_create(user=user)
+            return Response({
+                'token': token.key,
+                'username': user.username,
+                'email': user.email
+            })
+
+        return Response({'error': 'Invalid credentials'})
+    
+    from .serializers import RegisterSerializer
+
+    @api_view(['POST'])
+    def signup(request):
+        serializer = RegisterSerializer(data=request.data)
+
+        if serializer.is_valid():
+            user = serializer.save()
+            token, _ = Token.objects.get_or_create(user=user)
+
+            return Response({
+                'token': token.key,
+                'message': 'User created successfully'
+            })
+
+        return Response(serializer.errors)
+
+    from .serializers import RegisterSerializer
+
+    @api_view(['POST'])
+    def signup(request):
+        serializer = RegisterSerializer(data=request.data)
+
+        if serializer.is_valid():
+            user = serializer.save()
+            token, _ = Token.objects.get_or_create(user=user)
+
+            return Response({
+                'token': token.key,
+                'message': 'User created successfully'
+            })
+
+        return Response(serializer.errors)
+
+    from rest_framework.decorators import api_view, permission_classes
+    from rest_framework.permissions import IsAuthenticated
+    from .models import Book
+    from .serializers import BookSerializer
+
+    @api_view(['GET'])
+    @permission_classes([IsAuthenticated])
+    def get_books(request):
+        books = Book.objects.filter(user=request.user)
+        serializer = BookSerializer(books, many=True)
+        return Response(serializer.data)
+
+    @api_view(['POST'])
+    @permission_classes([IsAuthenticated])
+    def add_book(request):
+        serializer = BookSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save(user=request.user)
+            return Response({'message': 'Book added'})
+
+        return Response(serializer.errors)
+    
+    @api_view(['PUT'])
+    @permission_classes([IsAuthenticated])
+    def edit_book(request, id):
+        try:
+            book = Book.objects.get(id=id, user=request.user)
+        except Book.DoesNotExist:
+            return Response({'error': 'Not found'})
+
+        serializer = BookSerializer(book, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message': 'Updated'})
+
+        return Response(serializer.errors)
+    
+    @api_view(['DELETE'])
+    @permission_classes([IsAuthenticated])
+    def delete_book(request, id):
+        try:
+            book = Book.objects.get(id=id, user=request.user)
+            book.delete()
+            return Response({'message': 'Deleted'})
+        except Book.DoesNotExist:
+            return Response({'error': 'Not found'})
+
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        path('login/', views.login),
+        path('signup/', views.signup),
+
+        path('books/', views.get_books),
+        path('books/add/', views.add_book),
+        path('books/edit/<int:id>/', views.edit_book),
+        path('books/delete/<int:id>/', views.delete_book),
+    ]

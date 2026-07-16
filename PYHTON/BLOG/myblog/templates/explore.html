@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technology Category | BlogSpace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static "css/explore.css" %}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">BlogSpace</div>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="{% url "home_page" %}"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-folder"></i> Categories</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container breadcrumb">
+        <a href="#"><i class="fas fa-home"></i> Home</a>  <a href="#"><i class="fas fa-folder"></i> Categories</a>  Technology
+    </div>
+
+    <!-- Category Hero -->
+    <div class="container">
+        <section class="category-hero" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('{{category.picture.url}}') no-repeat center center/cover;
+            ">
+            <h1>{{category.name}}</h1>
+            <p>{{category.desription}}</p>
+            <div class="article-count">{{category.blog.count}}  Articles</div>
+        </section>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <!-- Content -->
+        <div class="content">
+            <!-- Blog List -->
+            <div class="blog-list">
+                <!-- Article 1 -->
+                 {% for blog in blogs %}
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="{{blog.picture.url}}" alt="Web Development">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">{{blog.date_published}}</div>
+                        <h2 class="blog-title"><a href="{% url "single" blog.pk %}">{{blog.title}}</a></h2>
+                        <p class="blog-excerpt">{{blog.description}}</p>
+                        <a href="{% url "single" blog.pk %}" class="read-more">Read More →</a>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                {% if blogs.has_previous %}
+                <a href="?page={{blog.previous_page_number}}" class="pagination-item active">←</a>
+                {% endif %}
+
+                <div class="pagination-item">{{blogs.number}}</div>
+                {% if blogs.has_next%}
+                <a href="?page={{blog.next_page_number}}" class="pagination-item active">→</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- About Category -->
+            <div class="sidebar-widget">
+                <h3 class="sidebar-title">About {{category.name}}</h3>
+                <p>{{category.about}}</p>
+            </div>
+
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="logo">BlogSpace</div>
+            <div class="social-links">
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p>&copy; 2023 BlogSpace. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="/static/js/explore.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Check the Weather</h1>
+    <input type="text" id="city" placeholder="Enter city">
+    <button onclick="getWeather()">Get Weather</button>
+    <div id="result"></div>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

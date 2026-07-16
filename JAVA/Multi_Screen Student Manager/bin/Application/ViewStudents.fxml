@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="Application.ViewStudentsController" style="-fx-padding:12;">
+    <children>
+        <VBox spacing="8" AnchorPane.topAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0">
+            <Label text="Students" style="-fx-font-size:14px; -fx-font-weight:bold;" />
+            <ListView fx:id="studentsListView" prefHeight="200" />
+            <HBox spacing="8">
+                <Button text="Back" onAction="#onBack" />
+            </HBox>
+            <Region VBox.vgrow="ALWAYS" />
+        </VBox>
+    </children>
+</AnchorPane>

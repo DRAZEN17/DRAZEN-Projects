@@ -1,0 +1,29 @@
+Stopwatch Application
+
+Purpose:
+This JavaFX application provides a simple stopwatch and countdown timer UI for timing tasks. It's intended as a small demonstration of JavaFX layout, FXML, and controller-based event handling.
+
+How to run:
+- Recommended (IDE): Open the project in your IDE (IntelliJ, Eclipse, or VS Code with Java support) and run the `Application.Main` class.
+- Command-line (example): Ensure JDK 11+ and JavaFX SDK are installed. Replace <PATH_TO_FX> with your JavaFX SDK lib folder.
+  1 Compile:
+     javac -d out --module-path "<PATH_TO_FX>" --add-modules javafx.controls,javafx.fxml src\Application\*.java
+  2 Run:
+     java --module-path "<PATH_TO_FX>" --add-modules javafx.controls,javafx.fxml -cp out Application.Main
+
+Main classes (what they do):
+- Application.Main: Entry point; launches the JavaFX application and loads `Main.fxml`.
+- Application.AppController: Main app controller; handles navigation between views.
+- Application.StopwatchController: Controller for the stopwatch view; start/stop/reset logic and UI updates.
+- Application.CountdownController: Controller for the countdown view; set duration, start, pause, reset.
+
+Notes & troubleshooting:
+- If you get JavaFX runtime errors, verify `--module-path` points to the JavaFX SDK `lib` directory and that you added `javafx.controls,javafx.fxml`.
+- If using an IDE, add the JavaFX SDK as a library/module in the run configuration.
+
+Files of interest:
+- src\Application\Main.java  (application entry)
+- src\Application\AppController.java
+- src\Application\StopwatchController.java
+- src\Application\CountdownController.java
+

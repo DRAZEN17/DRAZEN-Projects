@@ -1,0 +1,195 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - BlogSpace</title>
+    <link rel="stylesheet" href="{% static "css/contact.css" %}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">BlogSpace</div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#" class="active">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('img/abt.jpg') no-repeat center center/cover;
+            ">
+        <div class="container">
+            <h1>Get In Touch With Us</h1>
+            <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Contact Section -->
+        <div class="contact-section">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h2>Contact Information</h2>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i>📍</i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Address</h3>
+                        <p>123 Blog Street, Content City<br>Digital State, 10101</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i>📞</i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Phone</h3>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i>✉️</i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Email</h3>
+                        <p>hello@blogspace.com</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i>🕒</i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Business Hours</h3>
+                        <p>Monday-Friday: 9AM - 5PM<br>Saturday: 10AM - 2PM<br>Sunday: Closed</p>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="Twitter">t</a>
+                    <a href="#" title="Instagram">i</a>
+                    <a href="#" title="LinkedIn">in</a>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2>Send Us a Message</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">How often do you publish new articles?</div>
+                <div class="faq-answer">
+                    <p>We publish new articles every weekday, with occasional weekend content. Typically, you can expect 5-7 new articles per week across various categories.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can I contribute to your blog as a guest writer?</div>
+                <div class="faq-answer">
+                    <p>Yes! We welcome guest contributions. Please send us a message through the contact form with your ideas and writing samples, and our editorial team will review your submission.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How can I advertise on your blog?</div>
+                <div class="faq-answer">
+                    <p>We offer several advertising options including sponsored content, banner ads, and newsletter features. Please contact us with your requirements, and we'll provide our media kit and rate card.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Do you have a newsletter I can subscribe to?</div>
+                <div class="faq-answer">
+                    <p>Absolutely! We have a weekly newsletter that features our latest articles, exclusive content, and curated resources. You can subscribe using the form at the bottom of this page.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Map Section -->
+        <div class="map-section">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.6214610304037!2d-74.00594938459418!3d40.71278267933065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a1e1c2c0aab%3A0x47d80e49c5cee6c2!2sStatue%20of%20Liberty!5e0!3m2!1sen!2sus!4v1622548472768!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="container">
+        <section class="newsletter">
+            <h2>Stay Updated With Our Newsletter</h2>
+            <p>Subscribe to get the latest articles, news, and exclusive content delivered to your inbox.</p>
+            <form class="subscribe-form">
+                <input type="email" placeholder="Enter your email address">
+                <button type="submit">Subscribe</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="logo">BlogSpace</div>
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#">Categories</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <p>&copy; 2023 BlogSpace. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/contact.js"></script>
+</body>
+</html>

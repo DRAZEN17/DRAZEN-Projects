@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Categories</title>
+    <link rel="stylesheet" href="{% static "css/categories.css" %}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">BlogSpace</div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#" class="active">Categories</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('img/abt.jpg') no-repeat center center/cover;
+            ">
+        <div class="container">
+            <h1>Explore Blog Categories</h1>
+            <p>Discover articles organized by topics that matter to you</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Categories Grid -->
+        <div class="categories-grid">
+            <!-- Technology -->
+             {% for category in categories %}
+            <div class="category-card">
+                <div class="category-header">
+                    {% if category.picture %}
+                    <img src="{{category.picture.url}}" alt="{{category.title}}">
+                    {% else %}
+                           <img src="{%  static "img/abt.jpg" %}" alt="">
+                    {% endif %}
+                    <div class="category-header-overlay">
+                        <h2 class="category-title">{{category.name}}<span class="category-count">{{category.blog.count}}</span></h2>
+                    </div>
+                </div>
+                <div class="category-content">
+                    <p class="category-desc">{{category.description}}</p>
+                    <a href="{% url "explore" category.id %}" class="view-category">Explore {{category.name}}</a>
+                </div>
+            </div>
+            {% endfor %}
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="logo">BlogSpace</div>
+            <div class="social-links">
+                <a href="#">Twitter</a>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">LinkedIn</a>
+            </div>
+            <p>&copy; 2023 BlogSpace. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

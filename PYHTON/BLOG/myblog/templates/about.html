@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - BlogSpace</title>
+    <link rel="stylesheet" href="{% static "css/about.css" %}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">BlogSpace</div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#" class="active">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header" style=" background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('/static/img/abt.jpg') no-repeat center center/cover;">
+        <div class="container">
+            <h1>Our Story, Your Inspiration</h1>
+            <p>Learn about the passionate team behind BlogSpace and our mission to deliver valuable content to readers worldwide.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Mission Section -->
+        <section class="mission-section">
+            <div class="mission-content">
+                <h2>Our Mission</h2>
+                <p>At BlogSpace, we believe in the power of knowledge sharing and community building. Our mission is to create a platform where ideas flourish, knowledge is accessible, and voices are heard.</p>
+                <p>Founded in 2018, we've grown from a small blog into a thriving community of writers, thinkers, and learners. Every day, we work to deliver content that informs, inspires, and engages our readers.</p>
+                <p>We're committed to maintaining the highest standards of quality, authenticity, and value in everything we publish. Our content is crafted by experts who are passionate about their fields and dedicated to sharing their knowledge.</p>
+            </div>
+            <div class="mission-image">
+                <img src="/static/img/abt0.jpg" alt="Our team working together">
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team-section">
+            <h2 class="section-title">Meet Our Team</h2>
+            <div class="team-grid">
+                <!-- Team Member 1 -->
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="/static/img/abt2.jpg" alt="Sarah Johnson">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Sarah Johnson</h3>
+                        <div class="member-role">Editor-in-Chief</div>
+                        <p class="member-desc">Sarah leads our content strategy with over 10 years of experience in digital publishing.</p>
+                        <div class="social-links">
+                            <a href="#" title="Twitter">t</a>
+                            <a href="#" title="LinkedIn">in</a>
+                            <a href="#" title="Email">@</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-member">
+                    <div class="member-image">
+                       <img src="/static/img/abt3.jpg" alt="Michael Chen">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Michael Chen</h3>
+                        <div class="member-role">Tech Editor</div>
+                        <p class="member-desc">Michael brings cutting-edge tech insights with a background in software engineering.</p>
+                        <div class="social-links">
+                            <a href="#" title="Twitter">t</a>
+                            <a href="#" title="GitHub">gh</a>
+                            <a href="#" title="Email">@</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="/static/img/abt1.jpg" alt="Jessica Williams">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Jessica Williams</h3>
+                        <div class="member-role">Design Director</div>
+                        <p class="member-desc">Jessica ensures our content is visually engaging with her expertise in UX/UI design.</p>
+                        <div class="social-links">
+                            <a href="#" title="Instagram">i</a>
+                            <a href="#" title="Dribbble">d</a>
+                            <a href="#" title="Email">@</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="/static/img/abt4.webp" alt="David Rodriguez">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">David Rodriguez</h3>
+                        <div class="member-role">Business Editor</div>
+                        <p class="member-desc">David provides expert analysis on market trends and business strategies.</p>
+                        <div class="social-links">
+                            <a href="#" title="Twitter">t</a>
+                            <a href="#" title="LinkedIn">in</a>
+                            <a href="#" title="Email">@</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+            
+        <!-- Values Section -->
+        <section class="values-section">
+            <h2 class="section-title">Our Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">✓</div>
+                    <h3 class="value-title">Quality Content</h3>
+                    <p class="value-desc">We prioritize well-researched, accurate, and valuable content that serves our readers' needs.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">♻</div>
+                    <h3 class="value-title">Continuous Learning</h3>
+                    <p class="value-desc">We believe in the power of education and are committed to fostering a culture of growth.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🌍</div>
+                    <h3 class="value-title">Community Focus</h3>
+                    <p class="value-desc">We build inclusive spaces for dialogue and value diverse perspectives and experiences.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Join Our Community</h2>
+            <p>Whether you're a reader or a writer, there's a place for you in our growing community. Let's learn and grow together.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">Subscribe to Newsletter</a>
+                <a href="#" class="btn btn-outline">Become a Contributor</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="container">
+        <section class="newsletter">
+            <h2>Stay Updated With Our Latest Articles</h2>
+            <p>Subscribe to our newsletter and never miss new content from our expert writers.</p>
+            <form class="subscribe-form">
+                <input type="email" placeholder="Enter your email address">
+                <button type="submit">Subscribe</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="logo">BlogSpace</div>
+            <div class="footer-links">
+                <a href="home/">Home</a>
+                <a href="categories/">Categories</a>
+                <a href="#">About</a>
+                <a href="contact_us/">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <p>&copy; 2023 BlogSpace. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
