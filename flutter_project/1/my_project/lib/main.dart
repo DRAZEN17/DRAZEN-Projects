@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_project/home.dart';
-import 'package:my_project/first.dart';
 import 'package:my_project/second.dart';
 void main() {
   runApp(
