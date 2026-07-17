@@ -7,7 +7,7 @@ const anidarCover = new URL('../Assets/Screenshot 2026-07-08 172141.png', import
 const drazenCover = new URL('../Assets/Screenshot 2026-07-08 172931.png', import.meta.url).href;
 const sxtCover = new URL('../Assets/flyer.jpg', import.meta.url).href;
 const spyltWeb = new URL('../Assets/spylt web.jpg', import.meta.url).href;
-const spyltMobile = new URL('../Assets/spylt mobile.jpg', import.meta.url).href;
+const spyltMobile = new URL('../Assets/spylt mobile.png', import.meta.url).href;
 
 const seededProjects = [
   {
