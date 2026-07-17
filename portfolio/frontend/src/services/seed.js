@@ -74,7 +74,7 @@ export function seedIfEmpty() {
       content: 'Cinematic web design borrows from filmmaking: staging, timing, and emotional arcs.\n\nGSAP ScrollTrigger lets you synchronize any animation to scroll position with sub-pixel precision. The key insight is treating the scroll bar like a film timeline — each pixel of scroll maps to a moment in your story.\n\nStart with a pinned horizontal section. Pin the wrapper, measure the track width, and animate `translateX` from 0 to `-trackWidth`. Set `scrub: true` and the scroll position drives the animation directly, no RAF loops needed.\n\nNext, layer staggered text reveals. Split headings into lines with SplitText (or a manual span wrapper), then use `gsap.from` with a `stagger` of 0.05–0.1 seconds. The result feels like a title card from a Kubrick film.\n\nFinally, integrate WebGL particles with Three.js. A few hundred instanced meshes, each position driven by a simplex noise field, add atmospheric depth without blocking the main thread — use an offscreen canvas or OffscreenRenderer.\n\nThe result: a portfolio that visitors remember.',
       coverImage: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=900&q=80',
       tags: ['GSAP', 'Animation', 'JavaScript'],
-      published: true,
+      published: false,
       views: 0,
     },
   ]);
@@ -88,13 +88,12 @@ export function seedIfEmpty() {
       avatar: 'https://i.pravatar.cc/80?img=1',
       quote: 'DRAZEN shipped our entire marketing site in 10 days. The animations are genuinely stunning — clients keep asking who built it.',
       rating: 5,
-      approved: true,
+      approved: false,
     },
   ]);
 
   // ── Admin user (password: draxly170) ───────────────────────────────────────
   if (db.users.all().length === 0) {
-    // We store a bcrypt hash so the login check uses bcrypt.compare
     const hash = '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
     db.users.create({
       name: 'DRAZEN Admin',
