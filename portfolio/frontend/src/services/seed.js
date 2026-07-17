@@ -39,7 +39,7 @@ const seededProjects = [
     clicks: 0,
   },
   {
-    title: 'SPYLT',
+    title: 'SPYLT(web design)',
     slug: 'spylt web',
     description: 'FREAKING DELICIOUS PROTEIN + CAFFEINE',
     longDescription: 'SPYLT is a protein and caffeine drink that helps you stay focused and energized throughout the day. With a unique blend of natural ingredients, SPYLT provides a clean energy boost without the jitters or crash associated with traditional energy drinks.',
@@ -53,7 +53,7 @@ const seededProjects = [
     clicks: 0,
   },
   {
-    title: 'SPYLT',
+    title: 'SPYLT(mobile design)',
     slug: 'spylt mobile',
     description: 'FREAKING DELICIOUS PROTEIN + CAFFEINE',
     longDescription: 'SPYLT is a protein and caffeine drink that helps you stay focused and energized throughout the day. With a unique blend of natural ingredients, SPYLT provides a clean energy boost without the jitters or crash associated with traditional energy drinks.',
