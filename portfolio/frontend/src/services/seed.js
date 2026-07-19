@@ -7,7 +7,6 @@ const anidarCover = new URL('../Assets/Screenshot 2026-07-08 172141.png', import
 const drazenCover = new URL('../Assets/Screenshot 2026-07-08 172931.png', import.meta.url).href;
 const sxtCover = new URL('../Assets/flyer.jpg', import.meta.url).href;
 const spyltWeb = new URL('../Assets/spylt web.jpg', import.meta.url).href;
-const spyltMobile = new URL('../Assets/spylt mobile.png', import.meta.url).href;
 
 const seededProjects = [
   {
@@ -22,7 +21,7 @@ const seededProjects = [
     liveUrl: 'https://anidar.vercel.app/',
     featured: true,
     order: 0,
-    clicks: 0,
+    clicks: 10,
   },
   {
     title: 'DRAZEN PAVILLION',
@@ -36,7 +35,7 @@ const seededProjects = [
     liveUrl: 'https://drazen-pavillion.vercel.app',
     featured: true,
     order: 1,
-    clicks: 0,
+    clicks: 7,
   },
   {
     title: 'SPYLT(web design)',
@@ -50,21 +49,7 @@ const seededProjects = [
     liveUrl: '',
     featured: true,
     order: 2,
-    clicks: 0,
-  },
-  {
-    title: 'SPYLT(mobile design)',
-    slug: 'spylt mobile',
-    description: 'FREAKING DELICIOUS PROTEIN + CAFFEINE',
-    longDescription: 'SPYLT is a protein and caffeine drink that helps you stay focused and energized throughout the day. With a unique blend of natural ingredients, SPYLT provides a clean energy boost without the jitters or crash associated with traditional energy drinks.',
-    coverImage: spyltMobile,
-    techStack: ['UI/UX'],
-    category: 'landing page',
-    githubUrl: '',
-    liveUrl: '',
-    featured: true,
-    order: 3,
-    clicks: 0,
+    clicks: 3,
   },
   {
     title: 'SXT PRINTING',
@@ -77,8 +62,8 @@ const seededProjects = [
     githubUrl: '',
     liveUrl: '',
     featured: true,
-    order: 4,
-    clicks: 0,
+    order: 3,
+    clicks: 5,
   },
 ];
 
