@@ -1,0 +1,595 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Jost:wght@300;400;500;600&display=swap");
+@import "tailwindcss";
+
+@theme {
+  /* Palette sampled from the DRAZIME'S mockup: warm ink, cream paper, dusty
+     blush hero backdrop, and the rust price/accent tone. */
+  --color-ink: #18140f;
+  --color-ink-soft: #3a332c;
+  --color-cream: #f7f2ea;
+  --color-paper: #fffdf9;
+  --color-blush: #e3c8bc;
+  --color-blush-deep: #c69987;
+  --color-rust: #a85f34;
+  --color-taupe: #79726a;
+  --color-line: #e6ddcb;
+  --color-sand: #efe5d3;
+
+  --font-display: "Fraunces", serif;
+  --font-sans: "Jost", sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f7f2ea;
+  color: #18140f;
+  font-family: "Jost", sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body {
+    scroll-behavior: auto;
+  }
+}
+
+@utility flex-center {
+  @apply flex justify-center items-center;
+}
+@utility col-center {
+  @apply flex flex-col justify-center items-center;
+}
+@utility eyebrow {
+  @apply font-sans uppercase text-xs tracking-[.25em] text-taupe;
+}
+@utility hairline {
+  @apply border-line;
+}
+@utility btn-solid {
+  @apply flex-center gap-2 bg-ink text-cream uppercase text-sm tracking-[.15em] font-medium py-4 px-9 rounded-full hover:bg-ink-soft transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed;
+}
+@utility btn-outline {
+  @apply flex-center gap-2 border border-ink text-ink uppercase text-sm tracking-[.15em] font-medium py-4 px-9 rounded-full hover:bg-ink hover:text-cream transition-colors cursor-pointer;
+}
+@utility icon-btn {
+  @apply flex-center size-10 rounded-full text-ink hover:bg-ink/5 transition-colors cursor-pointer;
+}
+
+@layer components {
+  /* ---------- Nav ---------- */
+  .nav-bar {
+    @apply fixed top-0 inset-x-0 z-40 flex items-center justify-between md:px-10 px-4 md:h-24 h-16 bg-cream/95 backdrop-blur-md border-b border-line;
+  }
+
+  .logo-mark {
+    @apply font-display italic font-semibold md:text-3xl text-2xl tracking-wide text-ink;
+  }
+
+  /* ---------- Breadcrumbs ---------- */
+  .breadcrumbs {
+    @apply flex items-center flex-wrap gap-2 md:px-10 px-5 md:pt-28 pt-20 font-sans text-xs text-taupe;
+
+    a {
+      @apply hover:text-ink transition-colors;
+    }
+    span[aria-current] {
+      @apply text-ink;
+    }
+  }
+
+  /* ---------- Reveal tag (signature clip-path label, ported from the
+     source template's ClipPathTitle technique) ---------- */
+  .reveal-tag {
+    @apply inline-block overflow-hidden;
+
+    .reveal-tag-inner {
+      @apply bg-rust text-cream font-display italic md:text-base text-sm md:px-5 px-3 md:py-1.5 py-1 rounded-full text-nowrap;
+    }
+  }
+
+  /* ---------- Menu overlay ---------- */
+  .menu-overlay {
+    @apply fixed inset-0 z-[60] bg-cream flex flex-col;
+
+    .menu-header {
+      @apply flex items-center justify-between md:px-10 px-4 md:h-24 h-16 border-b border-line flex-none;
+    }
+
+    .menu-gender-tabs {
+      @apply flex items-center gap-8 md:px-10 px-4 pt-8 pb-4 font-display italic md:text-2xl text-xl flex-none;
+
+      button {
+        @apply text-taupe pb-2 border-b-2 border-transparent transition-colors cursor-pointer;
+
+        &.active {
+          @apply text-ink border-rust;
+        }
+      }
+    }
+
+    .menu-scroll {
+      @apply flex-1 overflow-y-auto md:px-10 px-4 pb-10;
+    }
+
+    .menu-row {
+      @apply w-full flex items-center justify-between py-4 border-b border-line font-sans uppercase text-sm tracking-[.1em] text-ink cursor-pointer;
+    }
+
+    .menu-sublist {
+      @apply overflow-hidden;
+
+      a {
+        @apply block py-3 pl-4 text-taupe hover:text-ink transition-colors font-sans text-sm tracking-wide;
+      }
+    }
+  }
+
+  /* ---------- Cart drawer ---------- */
+  .cart-backdrop {
+    @apply fixed inset-0 z-[70] bg-ink/40;
+  }
+
+  .cart-drawer {
+    @apply fixed top-0 right-0 z-[80] h-full w-full sm:w-[420px] bg-paper flex flex-col;
+
+    .cart-header {
+      @apply flex items-center justify-between px-6 md:h-24 h-16 border-b border-line flex-none;
+    }
+
+    .cart-items {
+      @apply flex-1 overflow-y-auto px-6;
+    }
+
+    .cart-line {
+      @apply flex gap-4 py-6 border-b border-line;
+    }
+
+    .cart-footer {
+      @apply flex-none border-t border-line px-6 py-6;
+    }
+  }
+
+  .qty-stepper {
+    @apply flex items-center gap-3 border border-line rounded-full px-1 py-1 w-fit;
+
+    button {
+      @apply flex-center size-7 rounded-full hover:bg-ink hover:text-cream transition-colors cursor-pointer text-sm;
+    }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero-section {
+    @apply relative w-full md:min-h-[92dvh] min-h-[85dvh] bg-blush overflow-hidden;
+
+    .hero-copy {
+      @apply relative z-10 h-full w-full flex flex-col justify-end md:pb-24 pb-14 md:pt-40 pt-28 md:px-10 px-5;
+    }
+
+    .hero-title {
+      @apply font-sans text-cream uppercase font-semibold md:text-[5vw] text-[11vw] leading-[0.98] tracking-tight max-w-3xl;
+    }
+
+    .hero-sub {
+      @apply font-sans text-cream/85 md:text-base text-sm max-w-xs mt-5 leading-relaxed;
+    }
+  }
+
+  /* ---------- Section heading ---------- */
+  .section-heading {
+    @apply flex items-end justify-between md:px-10 px-5 md:mb-12 mb-8 md:mt-28 mt-16;
+
+    h2 {
+      @apply font-display italic md:text-5xl text-3xl text-ink;
+    }
+  }
+
+  /* ---------- Filter tabs ---------- */
+  .filter-tabs {
+    @apply flex items-center gap-6 md:px-10 px-5 mb-8 overflow-x-auto text-nowrap;
+
+    button {
+      @apply font-sans uppercase text-xs tracking-[.15em] text-taupe pb-2 border-b-2 border-transparent transition-colors cursor-pointer flex-none;
+
+      &.active {
+        @apply text-ink border-ink;
+      }
+    }
+  }
+
+  /* ---------- Product grid / card ---------- */
+  .product-grid {
+    @apply grid grid-cols-2 lg:grid-cols-4 md:gap-8 gap-4 md:px-10 px-5;
+  }
+
+  .product-card {
+    .product-frame {
+      @apply relative bg-sand rounded-md overflow-hidden aspect-[4/5];
+    }
+
+    .wishlist-btn {
+      @apply absolute top-3 right-3 flex-center size-9 rounded-full bg-paper/80 backdrop-blur-sm text-ink hover:bg-paper transition-colors cursor-pointer;
+    }
+
+    .product-meta {
+      @apply pt-3;
+
+      p.brand {
+        @apply font-sans text-xs uppercase tracking-[.1em] text-ink;
+      }
+      p.name {
+        @apply font-sans text-sm text-taupe mt-0.5;
+      }
+      p.price {
+        @apply font-sans text-sm text-rust mt-1;
+      }
+    }
+  }
+
+  /* ---------- Editorial / partner strip ---------- */
+  .editorial-strip {
+    @apply flex flex-wrap items-center justify-center md:gap-x-16 gap-x-8 gap-y-4 md:px-10 px-5 md:py-24 py-14 border-y border-line;
+
+    span {
+      @apply font-display italic md:text-xl text-base text-taupe;
+    }
+  }
+
+  /* ---------- Collections ---------- */
+  .collections-section {
+    @apply md:px-10 px-5 flex flex-col md:gap-8 gap-5;
+  }
+
+  .collection-banner {
+    @apply relative rounded-md overflow-hidden md:h-[70vh] h-[46vh] flex items-end;
+
+    .collection-copy {
+      @apply relative z-10 md:p-12 p-6 text-cream;
+
+      p.eyebrow {
+        @apply text-cream/80;
+      }
+      h3 {
+        @apply font-display italic md:text-5xl text-3xl mt-2;
+      }
+    }
+  }
+
+  /* ---------- Carousel (Just For You) ---------- */
+  .carousel-row {
+    @apply flex gap-5 overflow-x-auto md:px-10 px-5 pb-2 snap-x snap-mandatory;
+
+    .product-card {
+      @apply flex-none w-[46%] md:w-[22%] snap-start;
+    }
+  }
+
+  .carousel-dots {
+    @apply flex-center gap-2 mt-8;
+
+    span {
+      @apply size-1.5 rounded-full bg-line;
+
+      &.active {
+        @apply bg-ink w-5 rounded-full;
+      }
+    }
+  }
+
+  /* ---------- Trending ---------- */
+  .trending-tags {
+    @apply flex flex-wrap gap-3 md:px-10 px-5;
+
+    span {
+      @apply font-sans text-sm text-taupe border border-line rounded-full px-4 py-2;
+    }
+  }
+
+  /* ---------- Footer ---------- */
+  .site-footer {
+    @apply md:mt-32 mt-20 border-t border-line md:px-10 px-5 md:py-20 py-12;
+
+    .footer-features {
+      @apply grid sm:grid-cols-2 gap-8 md:my-20 my-12;
+
+      .feature {
+        p {
+          @apply font-sans text-sm text-ink-soft mt-3 max-w-[22ch];
+        }
+      }
+    }
+
+    .insta-grid {
+      @apply grid grid-cols-4 gap-2 mt-8 max-w-xl;
+    }
+
+    .footer-bottom {
+      @apply flex flex-col md:flex-row justify-between items-center gap-6 md:mt-20 mt-12 pt-8 border-t border-line text-center;
+
+      a {
+        @apply font-sans text-sm text-taupe hover:text-ink transition-colors;
+      }
+    }
+  }
+
+  /* ---------- Shop / PLP ---------- */
+  .shop-page {
+    .shop-header {
+      @apply md:px-10 px-5 md:pt-6 pt-4 md:pb-10 pb-6;
+
+      h1 {
+        @apply font-display italic md:text-5xl text-3xl text-ink;
+      }
+    }
+
+    .shop-toolbar {
+      @apply flex items-center justify-between md:px-10 px-5 pb-8 gap-4;
+    }
+
+    .active-filters {
+      @apply flex items-center gap-2 flex-wrap;
+
+      span {
+        @apply flex items-center gap-2 font-sans text-xs uppercase tracking-wide bg-sand text-ink rounded-full pl-4 pr-2 py-1.5;
+      }
+    }
+
+    .filter-panel {
+      @apply flex flex-wrap gap-8 md:px-10 px-5 pb-8;
+
+      input {
+        @apply w-20 border-b border-line bg-transparent py-2 font-sans text-sm text-ink outline-none focus:border-ink transition-colors;
+      }
+
+      button {
+        @apply flex items-center gap-1 font-sans text-sm text-ink-soft border border-line rounded-full px-3 py-1.5 cursor-pointer transition-colors;
+
+        &.active {
+          @apply bg-ink text-cream border-ink;
+        }
+      }
+    }
+  }
+
+  .pagination {
+    @apply flex-center gap-2 md:mt-16 mt-10 md:pb-28 pb-16;
+
+    button {
+      @apply flex-center size-9 rounded-full font-sans text-sm text-taupe hover:bg-sand transition-colors cursor-pointer;
+
+      &.active {
+        @apply bg-ink text-cream;
+      }
+    }
+  }
+
+  /* ---------- Product detail ---------- */
+  .pdp {
+    @apply md:pt-6 pt-4 md:px-10 px-5 grid lg:grid-cols-2 md:gap-16 gap-8;
+
+    .pdp-gallery {
+      .main-frame {
+        @apply relative bg-sand rounded-md overflow-hidden aspect-[4/5];
+      }
+
+      .thumb-row {
+        @apply flex gap-3 mt-3;
+
+        button {
+          @apply size-16 rounded-md overflow-hidden bg-sand border-2 border-transparent cursor-pointer flex-none;
+
+          &.active {
+            @apply border-ink;
+          }
+        }
+      }
+    }
+
+    .pdp-info {
+      p.brand {
+        @apply font-sans uppercase text-sm tracking-[.15em] text-ink;
+      }
+      h1.name {
+        @apply font-display italic md:text-4xl text-2xl text-ink mt-2;
+      }
+      p.price {
+        @apply font-sans text-xl text-rust mt-3;
+      }
+    }
+
+    .size-row {
+      @apply flex items-center gap-3 flex-wrap;
+
+      button {
+        @apply flex-center min-w-11 h-11 px-3 rounded-full border border-line font-sans text-sm text-ink-soft cursor-pointer transition-colors;
+
+        &.active {
+          @apply bg-ink text-cream border-ink;
+        }
+        &:disabled {
+          @apply opacity-30 cursor-not-allowed;
+        }
+      }
+    }
+
+    .accordion-item {
+      @apply border-b border-line;
+
+      .accordion-trigger {
+        @apply w-full flex items-center justify-between py-5 font-sans uppercase text-sm tracking-[.1em] text-ink cursor-pointer;
+      }
+
+      .accordion-panel {
+        @apply overflow-hidden;
+
+        p,
+        li {
+          @apply font-sans text-sm text-ink-soft leading-relaxed;
+        }
+      }
+    }
+  }
+
+  /* ---------- Image lightbox ---------- */
+  .lightbox {
+    @apply fixed inset-0 z-[90] bg-ink/90 flex-center p-6 md:p-16;
+  }
+
+  .lightbox-panel {
+    @apply relative w-full h-full max-w-3xl max-h-[85vh];
+  }
+
+  .lightbox-close {
+    @apply absolute -top-12 right-0 md:top-0 md:-right-12 flex-center size-10 rounded-full bg-paper/90 text-ink cursor-pointer;
+  }
+
+  .lightbox-nav {
+    @apply absolute top-1/2 -translate-y-1/2 flex-center size-10 rounded-full bg-paper/90 text-ink cursor-pointer;
+
+    &.lightbox-nav--prev {
+      @apply left-2;
+    }
+    &.lightbox-nav--next {
+      @apply right-2;
+    }
+  }
+
+  /* ---------- Blog ---------- */
+  .blog-page {
+    .blog-header {
+      @apply md:px-10 px-5 md:pt-36 pt-24 md:pb-10 pb-6 text-center;
+
+      h1 {
+        @apply font-display italic md:text-5xl text-3xl text-ink;
+      }
+    }
+
+    .blog-list {
+      @apply flex flex-col md:px-10 px-5;
+    }
+
+    .blog-row {
+      @apply flex md:gap-8 gap-4 py-8 border-b border-line;
+
+      .thumb {
+        @apply flex-none md:w-56 w-28 aspect-[4/3] rounded-md overflow-hidden bg-sand;
+      }
+
+      h3 {
+        @apply font-display italic md:text-2xl text-lg text-ink;
+      }
+      p {
+        @apply font-sans text-sm text-ink-soft mt-2 md:max-w-lg;
+      }
+      time {
+        @apply font-sans text-xs uppercase tracking-wide text-taupe mt-3 block;
+      }
+    }
+  }
+
+  /* ---------- Cart page ---------- */
+  .cart-page {
+    .cart-page-header {
+      @apply md:px-10 px-5 md:pt-36 pt-24 md:pb-10 pb-6;
+
+      h1 {
+        @apply font-display italic md:text-5xl text-3xl text-ink;
+      }
+    }
+
+    .cart-page-grid {
+      @apply grid lg:grid-cols-[1fr_360px] md:gap-12 gap-8 md:px-10 px-5 md:pb-28 pb-16 items-start;
+    }
+
+    .cart-page-items {
+      @apply flex flex-col;
+    }
+
+    .cart-page-line {
+      @apply flex md:gap-6 gap-4 py-6 border-b border-line;
+
+      .thumb {
+        @apply flex-none md:w-32 w-24 aspect-[4/5] rounded-md overflow-hidden bg-sand block;
+      }
+    }
+  }
+
+  /* ---------- Order summary (shared: cart, checkout, confirmation) ---------- */
+  .order-summary {
+    @apply bg-sand rounded-md md:p-8 p-6 lg:sticky lg:top-28;
+
+    h2 {
+      @apply font-display italic text-2xl text-ink mb-5;
+    }
+  }
+
+  .order-summary-row {
+    @apply flex items-center justify-between font-sans text-sm text-ink-soft py-2;
+  }
+
+  .order-summary-total {
+    @apply border-t border-line mt-2 pt-4 font-sans text-base text-ink;
+
+    span:last-child {
+      @apply text-rust text-lg;
+    }
+  }
+
+  /* ---------- Checkout page ---------- */
+  .checkout-page {
+    .checkout-page-header {
+      @apply flex items-center justify-between md:px-10 px-5 md:pt-36 pt-24 md:pb-10 pb-6;
+
+      h1 {
+        @apply font-display italic md:text-5xl text-3xl text-ink;
+      }
+    }
+
+    .checkout-grid {
+      @apply grid lg:grid-cols-[1fr_380px] md:gap-12 gap-8 md:px-10 px-5 md:pb-28 pb-16 items-start;
+    }
+
+    .checkout-form-col {
+      @apply flex flex-col md:gap-12 gap-8;
+
+      section h2 {
+        @apply font-display italic text-xl text-ink mb-5;
+      }
+    }
+  }
+
+  .shipping-option {
+    @apply flex items-center gap-4 border border-line rounded-md px-4 py-3 cursor-pointer transition-colors;
+
+    input[type="radio"] {
+      @apply accent-ink size-4;
+    }
+
+    &:has(input:checked) {
+      @apply border-ink bg-sand/50;
+    }
+  }
+
+  /* ---------- Order confirmation ---------- */
+  .confirmation-header {
+    @apply text-center md:pt-40 pt-24 md:px-10 px-5;
+
+    h1 {
+      @apply font-display italic md:text-5xl text-3xl text-ink;
+    }
+  }
+}
