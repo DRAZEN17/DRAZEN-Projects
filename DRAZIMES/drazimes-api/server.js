@@ -1,21 +1,33 @@
+import "dotenv/config";
 import express from "express";
+import cors from "cors";
+import healthRouter from "./routes/health.js";
+import userRouter from "./routes/users.js";
+import orderRouter from "./routes/orders.js";
 
 const app = express();
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 
-app.get("/", (req, res) => {
-    res.send("DRAZIME'S API is alive.");
-});
+app.use(cors({ origin: "http://localhost:5173" }));
+app.use(express.json());
 
-app.get("/api/health", (req, res) => {
-    res.json({status: "ok"});
-});
-app.get("/api/hello/:drazen", (req, res) => {
-    const drazen = req.params.drazen;
-    res.send(`hello, ${drazen}!`);
-});
+
+app.use("/api/health", healthRouter);
+app.use("/api/users", userRouter);
+app.use("/api/orders", orderRouter);
+
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
-});
 
+
+
+// app.get("/", (req, res) => {
+//     res.send("DRAZIME'S API is alive.");
+// });
+// app.post("/api/echo", (req, res) => {
+//     res.json({
+//         drazen: req.body
+//     });
+// });
+});
