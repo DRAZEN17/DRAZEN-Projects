@@ -10,8 +10,7 @@ export const CartProvider = ({ children }) => {
   const [isCartOpen, setCartOpen] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
 
-  // No backend, so "persistence" is local to this browser — refreshing or
-  // coming back later keeps the cart instead of silently emptying it.
+
   useEffect(() => {
     writeStorage("cart", lines);
   }, [lines]);

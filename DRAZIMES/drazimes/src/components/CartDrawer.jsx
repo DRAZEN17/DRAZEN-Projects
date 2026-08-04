@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -14,22 +14,24 @@ const CartDrawer = () => {
 
   useFocusTrap(isCartOpen, drawerRef, closeCart);
 
-  // useGSAP(
-  //   () => {
-  //     gsap.set(backdropRef.current, { autoAlpha: 0 });
-  //     gsap.set(drawerRef.current, { xPercent: 100, autoAlpha: 0 });
-  //   },
-  //   { dependencies: [] }
-  // );
 
   useGSAP(
     () => {
       if (isCartOpen) {
+        gsap.set(backdropRef.current, { visibility: "visible", pointerEvents: "auto" });
+        gsap.set(drawerRef.current, { visibility: "visible", pointerEvents: "auto" });
         gsap.to(backdropRef.current, { autoAlpha: 1, duration: 0.4, ease: "power2.out" });
-        gsap.to(drawerRef.current, { xPercent: 0, autoAlpha: 1, duration: 0.55, ease: "power4.out" });
+        gsap.to(drawerRef.current, { x: 0, autoAlpha: 1, duration: 0.55, ease: "power4.out" });
       } else {
-        gsap.to(backdropRef.current, { autoAlpha: 0, duration: 0.35, ease: "power2.in" });
-        gsap.to(drawerRef.current, { xPercent: 100, autoAlpha: 0, duration: 0.45, ease: "power3.in" });
+        const drawerWidth = drawerRef.current?.offsetWidth || 420;
+        gsap.to(backdropRef.current, { autoAlpha: 0, duration: 0.35, ease: "power2.in", onComplete: () => gsap.set(backdropRef.current, { pointerEvents: "none" }) });
+        gsap.to(drawerRef.current, {
+          x: drawerWidth,
+          autoAlpha: 0,
+          duration: 0.45,
+          ease: "power3.in",
+          onComplete: () => gsap.set(drawerRef.current, { visibility: "hidden", pointerEvents: "none" }),
+        });
       }
     },
     { dependencies: [isCartOpen] }

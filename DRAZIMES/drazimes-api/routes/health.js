@@ -6,10 +6,11 @@ router.get("/", (req, res) => {
     res.json({ status: "ok" });
 });
 
-router.get("/time", (req, res) => {
-    res.json({
-    now: new Date().toISOString()});
-});
 
 
 export default router;
+
+// router.get("/time", (req, res) => {
+//     res.json({
+//     now: new Date().toISOString()});
+// });

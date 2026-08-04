@@ -141,11 +141,11 @@ body::-webkit-scrollbar {
 
   /* ---------- Cart drawer ---------- */
   .cart-backdrop {
-    @apply fixed inset-0 z-[70] bg-ink/40;
+    @apply fixed inset-0 z-[70] bg-ink/40 opacity-0 invisible pointer-events-none;
   }
 
   .cart-drawer {
-    @apply fixed top-0 right-0 z-[80] h-full w-full sm:w-[420px] bg-paper flex flex-col;
+    @apply fixed top-0 right-0 z-[80] h-full w-full sm:w-[420px] bg-paper flex flex-col opacity-0 translate-x-full pointer-events-none;
 
     .cart-header {
       @apply flex items-center justify-between px-6 md:h-24 h-16 border-b border-line flex-none;
