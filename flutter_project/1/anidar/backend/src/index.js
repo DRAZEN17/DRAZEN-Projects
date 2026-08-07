@@ -50,6 +50,6 @@ const io = new Server(server, {
 initializeChat(io);
 
 const PORT = process.env.PORT || 3001;
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
   console.log(`Anidar API running on port ${PORT}`);
 });
