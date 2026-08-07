@@ -1,5 +1,3 @@
-// Run: node src/db/seed.js
-// Creates default nests if they don't exist
 require('dotenv').config();
 const pool = require('./pool');
 

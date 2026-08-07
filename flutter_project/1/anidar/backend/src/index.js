@@ -16,8 +16,7 @@ const { directChatRouter } = require('./routes/directChat');
 
 const app = express();
 const server = http.createServer(app);
-
-// --- Temporarily allow all origins for local development ---
+-
 app.use(cors({
   origin: (origin, callback) => callback(null, true),   // allow all
   credentials: true
