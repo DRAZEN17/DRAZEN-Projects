@@ -4,4 +4,6 @@ class Config {
 
   static const String apiUrl = 'http://$_localIp:$_localPort';
   static const String socketUrl = 'http://$_localIp:$_localPort';
+
+  static const String productionUrl = 'https://anidar-api.onrender.com';
 }

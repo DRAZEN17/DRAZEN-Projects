@@ -8,12 +8,17 @@ class SocketService {
 
   SocketService(this.token);
 
-  // Use localhost in debug mode, production URL otherwise
+  // Use localhost in debug mode, local socket IP in mobile debug, production URL otherwise
   static String get socketUrl {
     if (kDebugMode && kIsWeb) {
       return 'http://localhost:3001';       // same as your REST baseUrl
     }
-    return Config.socketUrl;                // production: https://anidar-api.railway.app
+
+    if (!kReleaseMode) {
+      return Config.socketUrl;
+    }
+
+    return Config.productionUrl;
   }
 
   void connect() {

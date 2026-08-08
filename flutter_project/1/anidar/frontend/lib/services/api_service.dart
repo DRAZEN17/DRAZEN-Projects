@@ -7,10 +7,20 @@ class ApiService {
   final http.Client client;
   String? accessToken;
 
-  // On web debug → localhost. On phone (debug or release) → local IP from Config
+  // Choose base URL by platform and build mode
   static String get baseUrl {
-    if (kIsWeb && kDebugMode) return 'http://localhost:3001';
-    return Config.apiUrl; // http://192.168.x.x:3001
+    // Local Flutter Web development
+    if (kIsWeb && kDebugMode) {
+      return 'http://localhost:3001';
+    }
+
+    // Android/iOS development (non-release)
+    if (!kReleaseMode) {
+      return Config.apiUrl;
+    }
+
+    // Production
+    return Config.productionUrl;
   }
 
   ApiService({http.Client? client}) : client = client ?? http.Client();
