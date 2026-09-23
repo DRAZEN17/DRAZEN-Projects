@@ -3,9 +3,10 @@
 // ─────────────────────────────────────────────────────────────────────────────
 import { db } from './api.js';
 
-const ndepmpCover = new URL('../Assets/Screenshot 2026-09-23 192540.png', import.meta.url).href;
+const ndepmpCover = new URL('../Assets/ndepmp.png', import.meta.url).href;
+const drazimesCover = new URL('../Assets/drazimes.png', import.meta.url).href;
 const anidarCover = new URL('../Assets/Screenshot 2026-07-08 172141.png', import.meta.url).href;
-const drazenCover = new URL('../Assets/Screenshot 2026-07-08 172931.png', import.meta.url).href;
+const drazenCover = new URL('../Assets/pavillion.png', import.meta.url).href;
 const sxtCover = new URL('../Assets/flyer.jpg', import.meta.url).href;
 const spyltWeb = new URL('../Assets/spylt web.jpg', import.meta.url).href;
 
@@ -43,7 +44,7 @@ const seededProjects = [
     slug: 'cinematic-portfolio',
     description: ' Luxury Fashion & Accessories.',
     longDescription: 'A fashion e-commerce front end built from a Figma-style mockup, using  GSAP,React  + Vite  + Tailwind CSS.',
-    coverImage: anidarCover,
+    coverImage: drazimesCover,
     techStack: ['React', 'TailwindCSS', 'Vite','GSAP'],
     category: 'web',
     githubUrl: 'https://github.com/DRAZEN17/DRAZEN-Projects/tree/aed15974375ca89bbbd3e532c0d3880fd3913712/REACT/DRAZIMES/drazimes',
