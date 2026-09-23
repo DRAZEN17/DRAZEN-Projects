@@ -277,12 +277,10 @@ function getFallbackItems(view = 'anime', search = '') {
   if (!search) return source;
 
   const query = search.trim().toLowerCase();
-  const matches = source.filter((item) => {
+  return source.filter((item) => {
     const haystack = `${item.title} ${item.title_english || ''}`.toLowerCase();
     return haystack.includes(query);
   });
-
-  return matches.length ? matches : source;
 }
 
 async function fetchWithRetry(url, retries = 3, delay = 1000) {

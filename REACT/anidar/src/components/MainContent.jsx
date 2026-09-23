@@ -20,6 +20,11 @@ export default function MainContent({ loading, items, setSelectedItem, savedIds,
           <div className="animate-spin mb-4" style={{width:40,height:40,borderRadius:20,background:'rgba(255,255,255,0.08)'}} />
           <p className="uppercase tracking-widest text-[10px] font-bold">Synchronizing Database...</p>
         </div>
+      ) : items.length === 0 ? (
+        <div className="rounded-3xl border border-white/10 bg-white/5 px-6 py-12 text-center text-gray-300">
+          <p className="text-lg md:text-xl font-black italic uppercase tracking-tighter text-white">No matches found</p>
+          <p className="mt-2 text-sm text-gray-400">Try a different title, keyword, or category.</p>
+        </div>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
           {items.map((item) => (

@@ -3,8 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 import { db } from './api.js';
 
-const ndepmpCover = new URL('../Assets/Screenshot 2026-09-23 192540.pngg', import.meta.url).href;
-const anidarCover = new URL('../Assets/Screenshot 2026-07-08 172141.png', import.meta.url).href;
+const ndepmpCover = new URL('../Assets/Screenshot 2026-09-23 192540.png', import.meta.url).href;
 const drazenCover = new URL('../Assets/Screenshot 2026-07-08 172931.png', import.meta.url).href;
 const sxtCover = new URL('../Assets/flyer.jpg', import.meta.url).href;
 const spyltWeb = new URL('../Assets/spylt web.jpg', import.meta.url).href;
