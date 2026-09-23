@@ -5,7 +5,6 @@ import { db } from './api.js';
 
 const ndepmpCover = new URL('../Assets/ndepmp.png', import.meta.url).href;
 const drazimesCover = new URL('../Assets/drazimes.png', import.meta.url).href;
-const anidarCover = new URL('../Assets/Screenshot 2026-07-08 172141.png', import.meta.url).href;
 const drazenCover = new URL('../Assets/pavillion.png', import.meta.url).href;
 const sxtCover = new URL('../Assets/flyer.jpg', import.meta.url).href;
 const spyltWeb = new URL('../Assets/spylt web.jpg', import.meta.url).href;
