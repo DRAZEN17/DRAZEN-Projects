@@ -1,0 +1,62 @@
+@import '@fontsource/space-grotesk/500.css';
+@import '@fontsource/space-grotesk/600.css';
+@import '@fontsource/space-grotesk/700.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import '@fontsource/jetbrains-mono/600.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-canvas: 255 255 255;
+  --color-canvas-alt: 245 247 246;
+  --color-ink: 18 24 21;
+  --color-ink-muted: 99 112 106;
+  --color-border: 228 232 230;
+  --color-brand: 14 59 46;
+  --color-brand-dark: 10 46 35;
+  --color-highlight: 37 99 235;
+}
+
+.dark {
+  --color-canvas: 8 21 16;
+  --color-canvas-alt: 15 36 28;
+  --color-ink: 240 242 240;
+  --color-ink-muted: 150 162 156;
+  --color-border: 30 54 44;
+  --color-brand: 23 92 70;
+  --color-brand-dark: 14 59 46;
+  --color-highlight: 96 141 245;
+}
+
+* {
+  border-color: rgb(var(--color-border));
+}
+
+body {
+  background-color: rgb(var(--color-canvas));
+  color: rgb(var(--color-ink));
+  font-family: var(--font-sans);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--color-brand));
+  outline-offset: 2px;
+}
