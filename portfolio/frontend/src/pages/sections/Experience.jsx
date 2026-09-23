@@ -3,7 +3,7 @@ import { useGsap } from '../../hooks/useGsap.js';
 import { fadeUpOnScroll } from '../../utils/animations.js';
 
 const items = [
-  { period: '2024 — Present', title: 'Small-time dev', company: 'Independent', description: 'Designing and shipping  product experiences for startups.' },
+  { period: '2026 — Present', title: 'Small-time dev', company: 'Independent', description: 'Designing and shipping  product experiences for startups.' },
 ];
 
 export default function Experience() {

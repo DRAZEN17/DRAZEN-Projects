@@ -1,9 +1,3 @@
-// ─────────────────────────────────────────────────────────────────────────────
-//  api.js  ·  Frontend-only "API" layer using localStorage as the database
-// ─────────────────────────────────────────────────────────────────────────────
-//  All data is persisted in localStorage under namespaced keys.
-//  IDs are random hex strings.  Timestamps are ISO strings.
-
 function uid() {
   return Math.random().toString(36).slice(2) + Date.now().toString(36);
 }

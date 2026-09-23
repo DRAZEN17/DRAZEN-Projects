@@ -17,8 +17,8 @@ export default function About() {
         </p>
         <div className="grid grid-cols-2 gap-4 fade-up">
           {[
-            ['2+', 'Years building'],
-            ['10+', 'Projects shipped'],
+            ['1+', 'Years building'],
+            ['4+', 'Projects shipped'],
             ['+', 'Awwwards-style'],
             ['100%', 'Owned codebase'],
           ].map(([n, l]) => (

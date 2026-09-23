@@ -1,10 +1,7 @@
 # DRAZIME'S — Luxury Fashion & Accessories
 
-A fashion e-commerce front end built from a Figma-style mockup, using the
-exact stack and coding conventions of the GSAP/Awwwards-style React
-template it was paired with: **React 19 + Vite 6 + Tailwind CSS v4 +
-GSAP (ScrollTrigger / ScrollSmoother / SplitText via `@gsap/react`)** —
-now wired up to a **live product API** instead of hardcoded data.
+A fashion e-commerce front end built from a Figma-style mockup, using  GSAP,React  + Vite  + Tailwind CSS—
+ wired up to a **live product API**.
 
 ## Getting started
 

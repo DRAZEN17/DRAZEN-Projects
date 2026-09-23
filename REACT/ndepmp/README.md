@@ -1,10 +1,7 @@
 # NDEPMP
 
-An independent property + electricity registry for Nigeria — portfolio build.
+An independent property + electricity registry for Nigeria.
 
-**Status:** Feature-complete frontend, no backend. Every flow in the original
-spec now runs against a mock data layer (React Context + localStorage)
-that stands in for a real API.
 
 **Stack:** React (Vite SPA), React Router, Tailwind CSS, GSAP, React Hook Form,
 Leaflet/OpenStreetMap, qrcode.react.

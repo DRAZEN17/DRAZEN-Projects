@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 import { db } from './api.js';
 
+const ndepmpCover = new URL('../Assets/Screenshot 2026-09-23 192540.pngg', import.meta.url).href;
 const anidarCover = new URL('../Assets/Screenshot 2026-07-08 172141.png', import.meta.url).href;
 const drazenCover = new URL('../Assets/Screenshot 2026-07-08 172931.png', import.meta.url).href;
 const sxtCover = new URL('../Assets/flyer.jpg', import.meta.url).href;
@@ -10,18 +11,18 @@ const spyltWeb = new URL('../Assets/spylt web.jpg', import.meta.url).href;
 
 const seededProjects = [
   {
-    title: 'anidar',
+    title: 'NDEPMP',
     slug: 'cinematic-portfolio',
-    description: ' A personal website made with tailwind and react  website  made for browsing anime, manhwa and manhua ,updates, release dates and details.',
-    longDescription: '',
-    coverImage: anidarCover,
-    techStack: ['React', 'TailwindCSS', 'Vite'],
+    description: ' National Digital Electricity & Property Management Platform.',
+    longDescription: 'NDEPMP is a comprehensive platform designed to streamline the management of electricity and property resources. It offers a user-friendly interface for monitoring, controlling, and optimizing energy consumption and property operations. With advanced analytics and reporting features, NDEPMP empowers users to make informed decisions, reduce costs, and enhance sustainability efforts.',
+    coverImage: ndepmpCover,
+    techStack: ['React', 'TailwindCSS', 'Vite','GSAP'],
     category: 'web',
-    githubUrl: 'https://github.com/DRAZEN17/DRAZEN-Projects/tree/f5edc523542547396e842a620726aef0f9c17029/anidar',
-    liveUrl: 'https://anidar.vercel.app/',
+    githubUrl: 'https://github.com/DRAZEN17/DRAZEN-Projects/tree/aed15974375ca89bbbd3e532c0d3880fd3913712/REACT/ndepmp/frontend',
+    liveUrl: 'https://ndepmp.vercel.app/',
     featured: true,
     order: 0,
-    clicks: 10,
+    clicks: 11,
   },
   {
     title: 'DRAZEN PAVILLION',
@@ -38,6 +39,34 @@ const seededProjects = [
     clicks: 7,
   },
   {
+    title: 'drazimes',
+    slug: 'cinematic-portfolio',
+    description: ' Luxury Fashion & Accessories.',
+    longDescription: 'A fashion e-commerce front end built from a Figma-style mockup, using  GSAP,React  + Vite  + Tailwind CSS.',
+    coverImage: anidarCover,
+    techStack: ['React', 'TailwindCSS', 'Vite','GSAP'],
+    category: 'web',
+    githubUrl: 'https://github.com/DRAZEN17/DRAZEN-Projects/tree/aed15974375ca89bbbd3e532c0d3880fd3913712/REACT/DRAZIMES/drazimes',
+    liveUrl: 'https://drazimes.vercel.app/',
+    featured: true,
+    order: 2,
+    clicks: 10,
+  },
+  {
+    title: 'anidar',
+    slug: 'cinematic-portfolio',
+    description: ' A personal website made with tailwind and react  website  made for browsing anime, manhwa and manhua ,updates, release dates and details.',
+    longDescription: '',
+    coverImage: anidarCover,
+    techStack: ['React', 'TailwindCSS', 'Vite'],
+    category: 'web',
+    githubUrl: 'https://github.com/DRAZEN17/DRAZEN-Projects/tree/aed15974375ca89bbbd3e532c0d3880fd3913712/REACT/anidar',
+    liveUrl: 'https://anidar.vercel.app/',
+    featured: true,
+    order: 3,
+    clicks: 8,
+  },
+  {
     title: 'SPYLT(web design)',
     slug: 'spylt web',
     description: 'FREAKING DELICIOUS PROTEIN + CAFFEINE',
@@ -48,7 +77,7 @@ const seededProjects = [
     githubUrl: '',
     liveUrl: '',
     featured: true,
-    order: 2,
+    order: 4,
     clicks: 3,
   },
   {
@@ -62,7 +91,7 @@ const seededProjects = [
     githubUrl: '',
     liveUrl: '',
     featured: true,
-    order: 3,
+    order: 5,
     clicks: 5,
   },
 ];
