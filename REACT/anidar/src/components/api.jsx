@@ -46,8 +46,8 @@ export async function fetchContent(view = 'anime', search = '') {
   const isAnime = view === 'anime';
   const query = `
     query ($search: String) {
-      Page(perPage: 24) {
-        media(search: $search, type: ${isAnime ? 'ANIME' : 'MANGA'}, isAdult: false) {
+      Page(perPage: 30) {
+        media(search: $search, type: ${isAnime ? 'ANIME' : 'MANGA'}, isAdult: false, sort: POPULARITY_DESC) {
           id
           title { romaji english }
           type
@@ -63,10 +63,10 @@ export async function fetchContent(view = 'anime', search = '') {
   `;
 
   try {
-    const data = await gqlRequest(query, { search: search || 'popular' });
+    const trimmedSearch = search.trim();
+    const data = await gqlRequest(query, { search: trimmedSearch || null });
     const items = (data?.Page?.media || []).map(normalizeAnimeItem);
-    if (search) return items;
-    return items.slice(0, 24);
+    return items.slice(0, 30);
   } catch (error) {
     console.warn('AniList fetch failed, using empty fallback:', error);
     return [];

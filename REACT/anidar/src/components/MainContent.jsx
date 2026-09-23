@@ -2,6 +2,9 @@ import React from 'react'
 import { Bookmark } from 'lucide-react'
 
 export default function MainContent({ loading, items, setSelectedItem, savedIds, heading, error }) {
+  const featuredItems = items.slice(0, 3);
+  const isSearchView = heading && heading.toLowerCase().includes('results for');
+
   return (
     <main className="max-w-7xl mx-auto px-4 md:px-6 py-12">
       <div className="flex items-center space-x-4 mb-8 md:mb-10">
@@ -12,6 +15,36 @@ export default function MainContent({ loading, items, setSelectedItem, savedIds,
       {error && !loading && (
         <div className="mb-8 rounded-3xl border border-red-600/40 bg-red-600/10 px-6 py-5 text-red-100 text-sm md:text-base">
           {error}
+        </div>
+      )}
+
+      {!loading && !error && items.length > 0 && !isSearchView && (
+        <div className="mb-10">
+          <div className="mb-4 flex items-center justify-between">
+            <p className="text-[10px] md:text-xs font-black uppercase tracking-[0.25em] text-red-400">Featured this week</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+            {featuredItems.map((item) => (
+              <div
+                key={`featured-${item.mal_id}`}
+                onClick={() => setSelectedItem(item)}
+                className="group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-gradient-to-br from-white/8 to-white/2 shadow-[0_12px_40px_rgba(0,0,0,0.28)] cursor-pointer transition-all duration-300 hover:border-red-500/50 hover:shadow-[0_18px_50px_rgba(239,68,68,0.14)] md:hover:-translate-y-1"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <img src={item.images.webp.large_image_url} alt={item.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                  <div className="absolute top-3 right-3 rounded-full border border-red-500/30 bg-black/60 px-2 py-1 text-[9px] md:text-[10px] font-black text-red-300">{item.score || 'N/A'}</div>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-red-400">{item.type}</span>
+                    </div>
+                    <h3 className="mt-2 text-lg md:text-xl font-black italic tracking-tighter text-white">{item.title_english || item.title}</h3>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
@@ -31,7 +64,7 @@ export default function MainContent({ loading, items, setSelectedItem, savedIds,
             <div
               key={item.mal_id}
               onClick={() => setSelectedItem(item)}
-              className="group relative bg-white/5 border border-white/5 rounded-xl md:rounded-2xl overflow-hidden cursor-pointer hover:border-red-500/50 transition-all active:scale-95 md:hover:-translate-y-2"
+              className="group relative overflow-hidden rounded-xl md:rounded-2xl border border-white/5 bg-white/5 shadow-[0_10px_24px_rgba(0,0,0,0.18)] cursor-pointer transition-all duration-300 active:scale-95 hover:border-red-500/50 hover:shadow-[0_16px_30px_rgba(239,68,68,0.12)] md:hover:-translate-y-2"
             >
               <div className="aspect-[3/4] overflow-hidden">
                 <img src={item.images.webp.large_image_url} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110" loading="lazy" />

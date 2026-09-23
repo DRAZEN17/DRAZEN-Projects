@@ -85,9 +85,11 @@ export default function App() {
     <div className="min-h-screen bg-[#0a0a0c] text-white antialiased">
       <Hero
         view={view}
+        setView={setView}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         handleSearch={handleSearch}
+        loadItems={loadItems}
       />
 
       <MainContent
