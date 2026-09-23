@@ -53,20 +53,6 @@ const seededProjects = [
     clicks: 10,
   },
   {
-    title: 'anidar',
-    slug: 'cinematic-portfolio',
-    description: ' A personal website made with tailwind and react  website  made for browsing anime, manhwa and manhua ,updates, release dates and details.',
-    longDescription: '',
-    coverImage: anidarCover,
-    techStack: ['React', 'TailwindCSS', 'Vite'],
-    category: 'web',
-    githubUrl: 'https://github.com/DRAZEN17/DRAZEN-Projects/tree/aed15974375ca89bbbd3e532c0d3880fd3913712/REACT/anidar',
-    liveUrl: 'https://anidar.vercel.app/',
-    featured: true,
-    order: 3,
-    clicks: 8,
-  },
-  {
     title: 'SPYLT(web design)',
     slug: 'spylt web',
     description: 'FREAKING DELICIOUS PROTEIN + CAFFEINE',
@@ -77,7 +63,7 @@ const seededProjects = [
     githubUrl: '',
     liveUrl: '',
     featured: true,
-    order: 4,
+    order: 3,
     clicks: 3,
   },
   {
@@ -91,7 +77,7 @@ const seededProjects = [
     githubUrl: '',
     liveUrl: '',
     featured: true,
-    order: 5,
+    order: 4,
     clicks: 5,
   },
 ];
