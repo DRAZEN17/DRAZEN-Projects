@@ -8,6 +8,7 @@ const drazimesCover = new URL('../Assets/drazimes.png', import.meta.url).href;
 const drazenCover = new URL('../Assets/pavillion.png', import.meta.url).href;
 const sxtCover = new URL('../Assets/flyer.jpg', import.meta.url).href;
 const spyltWeb = new URL('../Assets/spylt web.jpg', import.meta.url).href;
+const anidarCover = new URL('../Assets/anidar.png', import.meta.url).href;
 
 const seededProjects = [
   {
@@ -27,8 +28,8 @@ const seededProjects = [
   {
     title: 'DRAZEN PAVILLION',
     slug: 'drazen-pavillion',
-    description: ' A personal website made with tailwind and react  website  made for browsing, renting, selling and buying houses ',
-    longDescription: '',
+    description: 'Full-Featured Real Estate Platform',
+    longDescription: 'A personal website made with tailwind and react  website  made for browsing, renting, selling and buying houses',
     coverImage: drazenCover,
     techStack: ['React', 'TailwindCSS', 'Vite'],
     category: 'web',
@@ -70,7 +71,7 @@ const seededProjects = [
     title: 'SXT PRINTING',
     slug: 'sxt printing',
     description: 'Professional printing and graphic design services.',
-    longDescription: '',
+    longDescription: 'SXT Printing offers high-quality printing and graphic design services for businesses and individuals. Our team of professionals is dedicated to delivering exceptional results that exceed expectations.',
     coverImage: sxtCover,
     techStack: ['UI/UX'],
     category: 'flyer',
@@ -79,6 +80,20 @@ const seededProjects = [
     featured: true,
     order: 4,
     clicks: 5,
+  },
+  {
+    title: 'ANIDAR',
+    slug: 'anidar',
+    description: 'Cinematic Anime & Media Discovery Platform',
+    longDescription: 'a high-performance personal web platform for tracking trending anime, manhwa, and release updates.',
+    coverImage: anidarCover,
+    techStack: ['React', 'TailwindCSS', 'Vite'],
+    category: 'web',
+    githubUrl: 'https://github.com/DRAZEN17/DRAZEN-Projects/tree/e5bfe45dd0545cccb4fe944c27511e354a03346d/REACT/anidar',
+    liveUrl: 'https://anidar.vercel.app/',
+    featured: true,
+    order: 5,
+    clicks: 12,
   },
 ];
 
